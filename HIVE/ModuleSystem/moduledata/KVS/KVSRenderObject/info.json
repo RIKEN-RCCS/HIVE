@@ -1,0 +1,17 @@
+{
+    "name": "KVSRenderObject",
+    "funcname": "KVSRenderObject",
+    "info": "KVSRenderObjectを作るノード",
+    "customfuncfile": "object.lua",
+    "input": [
+	{ "name": "object",   "type": "Object" },
+	{ "name": "renderer", "type": "Renderer" },
+	{ "name": "xform",    "type": "Xform" },
+	{ "name": "shader",   "type": "bool", "value": true, "hole": false },
+	{ "name": "shading",  "type": "bool", "value": true, "hole": false },
+	{ "name": "show",     "type": "bool", "value": true, "hole": false }
+    ],
+    "output": [
+        {"name": "render_object",  "type": "RenderObject"}
+    ]
+}

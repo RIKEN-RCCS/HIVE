@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-enable_testing()
+#enable_testing()
 
 PROJECT(hrender)
 
@@ -8,52 +8,52 @@ PROJECT(hrender)
 
 # ------------------------------------------------------------
 
-message(CMAKE_BINARY_DIR ${CMAKE_BINARY_DIR})
+#message(CMAKE_BINARY_DIR ${CMAKE_BINARY_DIR})
 
 # --------------------------------------
 # third party lib flags
 #
 
-IF(HIVE_BUILD_WITH_COMPOSITOR)
-  IF(NOT HIVE_BUILD_WITH_MPI)
-    message(FATAL_ERROR "HIVE_BUILD_WITH_MPI must be defined when HIVE_BUILD_WITH_COMPOSIOR is enabled")
-  ENDIF()
-  add_definitions(-DHIVE_WITH_COMPOSITOR)
-ENDIF()
+#IF(HIVE_BUILD_WITH_COMPOSITOR)
+#  IF(NOT HIVE_BUILD_WITH_MPI)
+#    message(FATAL_ERROR "HIVE_BUILD_WITH_MPI must be defined when HIVE_BUILD_WITH_COMPOSIOR is enabled")
+#  ENDIF()
+#  add_definitions(-DHIVE_WITH_COMPOSITOR)
+#ENDIF()#
 
-IF(HIVE_BUILD_WITH_PMLIB)
-  IF(NOT HIVE_BUILD_WITH_MPI)
-    message(FATAL_ERROR "HIVE_BUILD_WITH_MPI must be defined when HIVE_BUILD_WITH_PMLIB is enabled")
-  ENDIF()
-  add_definitions(-DHIVE_WITH_PMLIB)
-ENDIF()
+#IF(HIVE_BUILD_WITH_PMLIB)
+#  IF(NOT HIVE_BUILD_WITH_MPI)
+#    message(FATAL_ERROR "HIVE_BUILD_WITH_MPI must be defined when HIVE_BUILD_WITH_PMLIB is enabled")
+#  ENDIF()
+#  add_definitions(-DHIVE_WITH_PMLIB)
+#ENDIF()
 # --------------------------------------
 
 # --------------------------------------
 # MPI
-IF(HIVE_BUILD_WITH_MPI)
-  add_definitions(-DHIVE_ENABLE_MPI)
-ENDIF()
+##IF(HIVE_BUILD_WITH_MPI)
+#  add_definitions(-DHIVE_ENABLE_MPI)
+#ENDIF()
 # --------------------------------------
 
 # --------------------------------------
 # OpenGL
-IF(HIVE_BUILD_WITH_OPENGL)
-  add_definitions(-DHIVE_BUILD_WITH_OPENGL)
-ENDIF()
+#IF(HIVE_BUILD_WITH_OPENGL)
+#  add_definitions(-DHIVE_BUILD_WITH_OPENGL)
+#ENDIF()
 # --------------------------------------
 
 # GLEW
 find_package(GLEW REQUIRED)
 if (GLEW_FOUND)
     include_directories(${GLEW_INCLUDE_DIRS})
-    link_libraries(${GLEW_LIBRARIES})
+    link_libraries(${GLEW_LIBRARY})
 endif()
 
 find_package(GLUT REQUIRED)
 if (GLUT_FOUND)
     include_directories(${GLUT_INCLUDE_DIRS})
-    link_libraries(${GLUT_LIBRARIES})
+    link_libraries(${GLUT_LIBRARY})
 endif()
 
 # --------------------------------------
@@ -61,7 +61,7 @@ endif()
 # --------------------------------------
 # KVS
 
-add_definitions(-DKVS_ENABLE_OPENGL=1)
+#add_definitions(-DKVS_ENABLE_OPENGL=1)
 
 # --------------------------------------
 
@@ -87,7 +87,7 @@ INCLUDE_DIRECTORIES(${INCLUDES})
 
 # Links
 set(LIBS
-	${CMAKE_BINARY_DIR}/third_party/lua
+  ${CMAKE_BINARY_DIR}/third_party/lua
   ${CMAKE_SOURCE_DIR}/third_party/local/kvs/lib
 )
 link_directories(${LIBS})
@@ -125,6 +125,8 @@ add_library (RenderPluginKVS ${HIVE_LIBRARY_TYPE} ${RENDERPLUGIN_SOURCES})
 # Enable address sanitizer(if available).
 add_sanitizers(RenderPluginKVS)
 
+# link GLUT and GLEW libraries
+target_link_libraries(RenderPluginKVS kvsCore ${GLUT_LIBRARY} ${GLEW_LIBRARY})
 
 # link KVS lib
 target_link_libraries(RenderPluginKVS kvsCore)
@@ -167,11 +169,9 @@ if (HIVE_BUILD_WITH_OPENGL)
 endif()
 
 target_link_libraries(RenderPluginKVS pthread)
-#target_link_libraries(RenderPluginKVS LSGLES)
 set_target_properties(RenderPluginKVS PROPERTIES PREFIX "")
 
 #------------------------------------------------
-
 # Volume Converter
 
 # Source files

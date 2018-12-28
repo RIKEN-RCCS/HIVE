@@ -161,3 +161,5 @@ add_subdirectory(Saver)
 add_subdirectory(Builder)
 add_subdirectory(ClusterParallelCoord)
 add_subdirectory(Util)
+add_subdirectory(KVS)
+

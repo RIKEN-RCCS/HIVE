@@ -1,0 +1,17 @@
+{
+    "name": "KVSScreen",
+    "funcname": "KVSScreen",
+    "info": "KVSScreenを作成するノード",
+    "customfuncfile": "screen.lua",
+    "input": [
+        { "name": "screen_size", "type": "vec2", "value": [ 512, 512 ] },
+        { "name": "render_object", "type": "RenderObject", "array": [
+            {"name": "render_object[0]", "type": "RenderObject" },
+            {"name": "render_object[1]", "type": "RenderObject" },
+            {"name": "render_object[2]", "type": "RenderObject" }
+        ]}
+    ],
+    "output": [
+        { "name": "Image", "type": "BufferImageData" }
+    ]
+}

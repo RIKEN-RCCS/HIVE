@@ -1,0 +1,13 @@
+{
+	"name": "KVSTornadoVolumeData",
+	"funcname": "KVSTornadoVolumeData",
+	"info":"TornadoVolumeDataを作成するためのノード",
+	"customfuncfile":"volumedata.lua",
+	"input": [
+		{"name": "resolution", "type": "vec3", "value":[8,8,8]},
+		{"name": "time", "type": "float", "value": 0.0 }
+	],
+	"output": [
+        {"name": "object",  "type": "Object"}
+	]
+}

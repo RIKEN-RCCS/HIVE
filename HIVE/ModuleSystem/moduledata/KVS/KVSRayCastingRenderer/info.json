@@ -1,0 +1,14 @@
+{
+	"name": "KVSRayCastingRenderer",
+	"funcname": "KVSRayCastingRenderer",
+	"info":"RayCastingRendererを生成するのノード",
+	"customfuncfile":"raycasting.lua",
+	"input": [
+	    {"name": "sampling_step", "type": "float", "value": 0.5 },
+	    {"name": "opaque_value", "type": "float", "value": 0.97 },
+	    {"name": "transfer_function", "type": "TransferFunction" }
+	],
+	"output": [
+            {"name": "renderer",  "type": "Renderer"}
+	]
+}

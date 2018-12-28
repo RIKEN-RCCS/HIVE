@@ -1,0 +1,13 @@
+{
+    "name": "KVSStochasticTetrahedraRenderer",
+    "funcname": "KVSStochasticTetrahedraRenderer",
+    "info":"StochasticTetrahedraRendererを生成するのノード",
+    "customfuncfile":"renderer.lua",
+    "input": [
+	{"name": "transfer_function", "type": "TransferFunction" },
+	{"name": "enable_shading", "type": "bool", "value": true }
+    ],
+    "output": [
+        {"name": "renderer", "type": "Renderer"}
+    ]
+}

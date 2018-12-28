@@ -1,0 +1,13 @@
+{
+    "name": "KVSExternalFaces",
+    "funcname": "KVSExternalFaces",
+    "info": "ExternalFacesを作成するためのノード",
+    "customfuncfile": "faces.lua",
+    "input": [
+        { "name": "object", "type": "Object" },
+        { "name": "transfer_function", "type": "TransferFunction" }
+    ],
+    "output": [
+        { "name": "object", "type": "Object" }
+    ]
+}

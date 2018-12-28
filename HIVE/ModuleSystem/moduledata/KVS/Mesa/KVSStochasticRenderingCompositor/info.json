@@ -1,0 +1,19 @@
+{
+    "name": "KVSStochasticRenderingCompositor",
+    "funcname": "KVSStochasticRenderingCompositor",
+    "info": "KVSStochasticRenderingCompositorを作成するノード",
+    "customfuncfile": "screen.lua",
+    "input": [
+        { "name": "screen_size", "type": "vec2", "value": [ 512, 512 ] },
+        { "name": "enable_lod", "type": "bool", "value": true },
+        { "name": "repetition_level", "type": "float", "value": 50 },
+        { "name": "render_object", "type": "RenderObject", "array": [
+            { "name": "render_object[0]", "type": "RenderObject" },
+            { "name": "render_object[1]", "type": "SRenderObject" },
+            { "name": "render_object[2]", "type": "RenderObject" }
+        ]}
+    ],
+    "output": [
+        { "name": "Image", "type": "BufferImageData" }
+    ]
+}

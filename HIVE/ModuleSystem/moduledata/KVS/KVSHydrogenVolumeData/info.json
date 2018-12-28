@@ -1,0 +1,12 @@
+{
+	"name": "KVSHydrogenVolumeData",
+	"funcname": "KVSHydrogenVolumeData",
+	"info":"HydrogenVolumeDataを作成するためのノード",
+	"customfuncfile":"volumedata.lua",
+	"input": [
+		{"name": "resolution", "type": "vec3", "value":[8,8,8]}
+	],
+	"output": [
+        {"name": "object",  "type": "Object"}
+	]
+}
