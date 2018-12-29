@@ -1,0 +1,13 @@
+{
+	"name": "KVSPointGenerator",
+	"funcname": "KVSPointGenerator",
+	"info":"Pointを作成するためのノード",
+	"customfuncfile":"point.lua",
+	"input": [
+		{"name": "min_coord", "type": "vec3", "value": [15,15,0]},
+		{"name": "max_coord", "type": "vec3", "value": [20,20,30]}
+	],
+	"output": [
+		{"name": "point_object",  "type": "Object"}
+	]
+}

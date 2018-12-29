@@ -1,0 +1,16 @@
+{
+    "name": "KVSStreamline",
+    "funcname": "KVSStreamline",
+    "info": "Streamlineを作成するためのノード",
+    "customfuncfile":"streamline.lua",
+    "input": [
+	{"name": "volume_object", "type": "Object"},
+	{"name": "max_coord", "type": "vec3", "value": [0, 0, 0]},
+	{"name": "min_coord", "type": "vec3", "value": [0, 0, 0]},
+	{"name": "delta", "type": "vec3", "value": [ 1, 1, 1]},
+	{"name": "transfer_function", "type": "TransferFunction"}
+    ],
+    "output": [
+        {"name": "object", "type": "Object"}
+    ]
+}

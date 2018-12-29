@@ -1,0 +1,14 @@
+{
+    "name": "KVSUnstructuredVolumeImporter",
+    "funcname": "KVSUnstructuredVolumeImporter",
+    "info":"UnstructuredVolumeをインポートするためのノード",
+    "customfuncfile":"importer.lua",
+    "input": [
+	{"name": "filepath", "type": "string", "value": "", "meta": "filebrowser"}
+    ],
+    "output": [
+        {"name": "object", "type": "Object"},
+	{"name": "min_value", "type": "float"},
+	{"name": "max_value", "type": "float"}
+    ]
+}

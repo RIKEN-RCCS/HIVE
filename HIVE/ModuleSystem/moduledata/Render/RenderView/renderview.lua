@@ -15,7 +15,7 @@ RenderView.new = function (varname)
         fov = 60,
         clearcolor = {0,0,0,1},
         color_file = "",
-        depth_file = "",
+        -- depth_file = "",
         ipcmode = false,
         renderer = nil
     }
@@ -88,7 +88,7 @@ function RenderView:Do()
     
     self.cam:SetScreenSize(v.rendersize[1], v.rendersize[2])--v.screensize[1], v.screensize[2])
     self.cam:SetFilename(v.color_file)
-    self.cam:SetDepthFilename(v.depth_file)
+    -- self.cam:SetDepthFilename(v.depth_file)
     self.cam:ClearColor(v.clearcolor[1],v.clearcolor[2],v.clearcolor[3],v.clearcolor[4])
     self.cam:LookAt(
         v.position[1], v.position[2], v.position[3],
@@ -172,9 +172,12 @@ function RenderView:Do()
     if v.renderer == nil then
         return "Not found renderer"
     else
-        -- For Compositor
-        v.renderer:enableDepthComposition(v.depthComp);
-        v.renderer:setCompositionMergeID(v.compMergeID);
+        -- For Compositor 
+          -- ModuleSystem-based HIVE works in a SINGLE PROCESS MODE
+          -- Currently there is no need for IMAGE COMPOSITION     
+  
+        -- v.renderer:enableDepthComposition(v.depthComp);
+        -- v.renderer:setCompositionMergeID(v.compMergeID);
 --[[
     if v.screensize[1] / 10 < v.rendersize[1] then
         render(temp, HIVE_fetchEvent)

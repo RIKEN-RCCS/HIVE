@@ -1,0 +1,12 @@
+{
+	"name": "KVSTransferFunction",
+	"funcname": "KVSTransferFunction",
+	"info":"TransferFunctionを生成するのノード",
+	"customfuncfile":"tfunction.lua",
+        "input": [
+	{"name": "filepath", "type": "string", "value": "", "meta": "filebrowser"}
+	],
+	"output": [
+        {"name": "transfer_function", "type": "TransferFunction"}
+	]
+}

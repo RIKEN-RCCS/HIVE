@@ -1,0 +1,11 @@
+{
+	"name": "KVSSphereGlyph",
+	"funcname": "KVSSphereGlyph",
+	"info":"SphereGlyphを生成するのノード",
+	"customfuncfile":"sphereglyph.lua",
+	"input": [
+	],
+	"output": [
+        {"name": "renderer",  "type": "Renderer"}
+	]
+}

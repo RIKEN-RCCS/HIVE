@@ -1,0 +1,17 @@
+{
+    "name": "KVSObject",
+    "funcname": "KVSObject",
+    "info":"KVSObjectを作るノード",
+    "customfuncfile":"object.lua",
+    "input": [
+	{"name": "object",    "type": "Object" },
+	{"name": "renderer",  "type": "Renderer" },
+        {"name": "translate", "type": "vec3", "value": [0,0,0]},
+        {"name": "rotate",    "type": "vec3", "value": [0,0,0]},
+        {"name": "scale",     "type": "vec3", "value": [1,1,1]},
+	{"name": "show",      "type": "bool", "value": true}
+    ],
+    "output": [
+        {"name": "KVSRenderObj",  "type": "KVSRenderObject"}
+    ]
+}

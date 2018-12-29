@@ -1,0 +1,13 @@
+{
+    "name": "KVSUniColor",
+    "funcname": "KVSUniColor",
+    "info": "UniColorを作成するためのノード",
+    "customfuncfile": "color.lua",
+    "input": [
+        { "name": "object", "type": "Object" },
+        { "name": "color", "type": "vec4", "value": [-1, -1, -1, -1] }
+    ],
+    "output": [
+        { "name": "object", "type": "Object" }
+    ]
+}

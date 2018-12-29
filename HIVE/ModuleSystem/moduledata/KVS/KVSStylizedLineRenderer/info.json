@@ -1,0 +1,12 @@
+{
+	"name": "KVSStylizedLineRenderer",
+	"funcname": "KVSStylizedLineRenderer",
+	"info":"StylizedLineRendererを生成するのノード",
+	"customfuncfile":"renderer.lua",
+	"input": [
+		{"name": "enable_shading", "type": "bool", "value": true }
+	],
+	"output": [
+        {"name": "renderer",  "type": "Renderer"}
+	]
+}

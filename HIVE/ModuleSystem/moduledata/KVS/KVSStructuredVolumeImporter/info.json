@@ -1,0 +1,12 @@
+{
+	"name": "KVSStructuredVolumeImporter",
+	"funcname": "KVSStructuredVolumeImporter",
+	"info":"StructuredVolumeをインポートするためのノード",
+	"customfuncfile":"importer.lua",
+	"input": [
+		{"name": "filepath", "type": "string", "value": "", "meta": "filebrowser"}
+	],
+	"output": [
+        {"name": "object",  "type": "Object"}
+	]
+}

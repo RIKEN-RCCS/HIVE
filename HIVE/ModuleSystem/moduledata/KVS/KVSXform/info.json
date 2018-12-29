@@ -1,0 +1,14 @@
+{
+    "name": "KVSXform",
+    "funcname": "KVSXform",
+    "info": "KVSXformを作るノード",
+    "customfuncfile": "xform.lua",
+    "input": [
+        { "name": "rotation",    "type": "vec3", "value": [ 0, 0, 0 ] },
+        { "name": "scaling",     "type": "vec3", "value": [ 1, 1, 1 ] },
+        { "name": "translation", "type": "vec3", "value": [ 0, 0, 0 ] }
+    ],
+    "output": [
+        { "name": "xform", "type": "Xform" }
+    ]
+}

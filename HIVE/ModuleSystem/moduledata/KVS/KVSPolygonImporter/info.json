@@ -1,0 +1,12 @@
+{
+	"name": "KVSPolygonImporter",
+	"funcname": "KVSPolygonImporter",
+	"info":"Polygonをインポートするためのノード",
+	"customfuncfile":"importer.lua",
+	"input": [
+		{"name": "filepath", "type": "string", "value": "", "meta": "filebrowser"}
+	],
+	"output": [
+        {"name": "object",  "type": "Object"}
+	]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "KVSIsosurface",
+    "funcname": "KVSIsosurface",
+    "info": "Isosurfaceを作成するためのノード",
+    "customfuncfile": "surface.lua",
+    "input": [
+        { "name": "object", "type": "Object" },
+        { "name": "transfer_function", "type": "TransferFunction" },
+	{ "name": "isolevel", "type":"float" }
+    ],
+    "output": [
+        { "name": "object", "type": "Object" }
+    ]
+}

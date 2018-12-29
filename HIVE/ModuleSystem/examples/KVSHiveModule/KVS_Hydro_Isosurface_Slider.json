@@ -1,0 +1,741 @@
+﻿{
+  "name": "",
+  "varname": "Root",
+  "type": "scene",
+  "nodes": [
+    {
+      "name": "KVSIsosurface",
+      "funcname": "KVSIsosurface",
+      "info": "Isosurfaceを作成するためのノード",
+      "customfuncfile": "surface.lua",
+      "input": [
+        {
+          "name": "object",
+          "type": "Object",
+          "nodeVarname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a"
+        },
+        {
+          "name": "transfer_function",
+          "type": "TransferFunction",
+          "nodeVarname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a"
+        },
+        {
+          "name": "isolevel",
+          "type": "float",
+          "nodeVarname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a",
+          "value": 0.1
+        }
+      ],
+      "output": [
+        {
+          "name": "object",
+          "type": "Object",
+          "nodeVarname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a"
+        }
+      ],
+      "customfunc": "KVSIsosurface = {}\nsetmetatable(KVSIsosurface, {__index = HiveBaseModule})\n\nlocal isosurface = require('KVSIsosurface')\n\nKVSIsosurface.new = function (varname)\n    local this = HiveBaseModule.new(varname)\n    this.iso = isosurface()\n\n    setmetatable(this, {__index=KVSIsosurface})\n    return this\nend\n\nfunction KVSIsosurface:Do()\n    self:UpdateValue()\n    local v = self.value\n    self.iso:SetTransferFunction(v.transfer_function)\n    self.iso:SetVolumeObject(v.object)\n    self.iso:SetIsolevel(v.isolevel)\n    return true\nend\n\nfunction KVSIsosurface:object()\n    return self.iso:Object()\nend\n",
+      "uiFunc": "",
+      "varname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          2055,
+          1845
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          100,
+          100
+        ],
+        "zindex": -4
+      }
+    },
+    {
+      "name": "KVSHydrogenVolumeData",
+      "funcname": "KVSHydrogenVolumeData",
+      "info": "HydrogenVolumeDataを作成するためのノード",
+      "customfuncfile": "volumedata.lua",
+      "input": [
+        {
+          "name": "resolution",
+          "type": "vec3",
+          "value": [
+            64,
+            64,
+            64
+          ],
+          "nodeVarname": "KVSHydrogenVolumeData94ab0384_883c_4dbe_8bd7_ebe89800a3a5"
+        }
+      ],
+      "output": [
+        {
+          "name": "object",
+          "type": "Object",
+          "nodeVarname": "KVSHydrogenVolumeData94ab0384_883c_4dbe_8bd7_ebe89800a3a5"
+        }
+      ],
+      "customfunc": "\nKVSHydrogenVolumeData = {}\nsetmetatable(KVSHydrogenVolumeData, {__index = HiveBaseModule})\n\nlocal hvdata = require('KVSHydrogenVolumeData')\n\nKVSHydrogenVolumeData.new = function (varname)\n    local this = HiveBaseModule.new(varname)\n    this.hvd = hvdata()\n\n    setmetatable(this, {__index=KVSHydrogenVolumeData})\n    return this\nend\n\nfunction KVSHydrogenVolumeData:Do()\n    self:UpdateValue()\n    local v = self.value\n\tself.hvd:SetResolution(v.resolution[1], v.resolution[2], v.resolution[3])\n    return true\nend\n\nfunction KVSHydrogenVolumeData:object()\n    return self.hvd:Object()\nend\n",
+      "uiFunc": "",
+      "varname": "KVSHydrogenVolumeData94ab0384_883c_4dbe_8bd7_ebe89800a3a5",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          1723,
+          1845
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          150,
+          150
+        ],
+        "zindex": -4
+      }
+    },
+    {
+      "name": "KVSRenderObject",
+      "funcname": "KVSRenderObject",
+      "info": "KVSRenderObjectを作るノード",
+      "customfuncfile": "object.lua",
+      "input": [
+        {
+          "name": "object",
+          "type": "Object",
+          "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57"
+        },
+        {
+          "name": "renderer",
+          "type": "Renderer",
+          "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57"
+        },
+        {
+          "name": "xform",
+          "type": "Xform",
+          "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57"
+        },
+        {
+          "name": "shader",
+          "type": "bool",
+          "value": true,
+          "hole": false,
+          "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57"
+        },
+        {
+          "name": "shading",
+          "type": "bool",
+          "value": true,
+          "hole": false,
+          "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57"
+        },
+        {
+          "name": "show",
+          "type": "bool",
+          "value": true,
+          "hole": false,
+          "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57"
+        }
+      ],
+      "output": [
+        {
+          "name": "render_object",
+          "type": "RenderObject",
+          "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57"
+        }
+      ],
+      "customfunc": "KVSRenderObject = {}\nsetmetatable(KVSRenderObject, {__index = HiveBaseModule})\n\nlocal render_object = require('KVSRenderObject')\n\nKVSRenderObject.new = function (varname)\n   local this = HiveBaseModule.new(varname)\n   this.reo = render_object()\n\n   setmetatable(this, {__index=KVSRenderObject})\n   return this\nend\n\nfunction KVSRenderObject:Do()\n   self:UpdateValue()\n   local v = self.value\n   self.reo:SetObject(v.object)\n   self.reo:SetRenderer(v.renderer)\n   self.reo:SetShaderFlag(v.shader)\n   self.reo:SetShadingFlag(v.shading)\n   self.reo:SetShowFlag(v.show)\n   self.reo:SetXform(v.xform)\n   return true\nend\n\nfunction KVSRenderObject:render_object()\n   local v = self.value\n   self.reo:Release()\n   return {\n      object = self.reo:Object(),\n      renderer = self.reo:Renderer()\n   }\nend\n",
+      "uiFunc": "",
+      "varname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          2334,
+          1903
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          200,
+          200
+        ],
+        "zindex": -4
+      }
+    },
+    {
+      "name": "KVSStochasticPolygonRenderer",
+      "funcname": "KVSStochasticPolygonRenderer",
+      "info": "StochasticPolygonRendererを生成するのノード",
+      "customfuncfile": "renderer.lua",
+      "input": [
+        {
+          "name": "enable_shading",
+          "type": "bool",
+          "value": true,
+          "nodeVarname": "KVSStochasticPolygonRenderer92b23f7c_a0de_4e94_aaae_2004ca1b74df"
+        }
+      ],
+      "output": [
+        {
+          "name": "renderer",
+          "type": "Renderer",
+          "nodeVarname": "KVSStochasticPolygonRenderer92b23f7c_a0de_4e94_aaae_2004ca1b74df"
+        }
+      ],
+      "customfunc": "\nKVSStochasticPolygonRenderer = {}\nsetmetatable(KVSStochasticPolygonRenderer, {__index = HiveBaseModule})\n\nlocal sp_renderer = require('KVSStochasticPolygonRenderer')\n\nKVSStochasticPolygonRenderer.new = function (varname)\n    local this = HiveBaseModule.new(varname)\n    this.spr = sp_renderer()\n\n    setmetatable(this, {__index=KVSStochasticPolygonRenderer})\n    return this\nend\n\nfunction KVSStochasticPolygonRenderer:Do()\n    self:UpdateValue()\n    local v = self.value\n    self.spr:EnableShading(v.enable_shading)\n    return true\nend\n\nfunction KVSStochasticPolygonRenderer:renderer()\n    return self.spr:Renderer()\nend\n",
+      "uiFunc": "",
+      "varname": "KVSStochasticPolygonRenderer92b23f7c_a0de_4e94_aaae_2004ca1b74df",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          1989,
+          1976
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          250,
+          250
+        ],
+        "zindex": -4
+      }
+    },
+    {
+      "name": "KVS",
+      "funcname": "KVS",
+      "info": "KVS Renderer",
+      "customfuncfile": "kvs.lua",
+      "input": [],
+      "output": [
+        {
+          "name": "renderer",
+          "type": "RenderCore",
+          "nodeVarname": "KVSfcb14ef4_c9e2_46fc_b8bf_083adaf2198a"
+        }
+      ],
+      "customfunc": "\nKVS = {}\nsetmetatable(KVS, {__index = HiveBaseModule})\n\nKVS.new = function (varname)\n    local this = HiveBaseModule.new(varname)\n    this.render = nil\n    setmetatable(this, {__index=KVS})\n    return this\nend\n\nfunction KVS:Do()\n    self.render = LoadModule(\"RenderPluginKVS\")\n    if self.render then\n        return true\n    else\n        return false\n    end\nend\n\nfunction KVS:renderer()\n    return self.render;\nend\n",
+      "uiFunc": "",
+      "varname": "KVSfcb14ef4_c9e2_46fc_b8bf_083adaf2198a",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          2336,
+          1735
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          300,
+          300
+        ],
+        "zindex": -4
+      }
+    },
+    {
+      "name": "RenderView",
+      "funcname": "RenderView",
+      "info": "レンダリングを行うためのノード",
+      "customfuncfile": "renderview.lua",
+      "uifile": "renderview.jsx",
+      "input": [
+        {
+          "name": "renderer",
+          "type": "RenderCore",
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "position",
+          "type": "vec3",
+          "value": [
+            3.433387505072052,
+            3.27961440348145,
+            5.20448492802983
+          ],
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "target",
+          "type": "vec3",
+          "value": [
+            0,
+            0,
+            0
+          ],
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "up",
+          "type": "vec3",
+          "value": [
+            0,
+            1,
+            0
+          ],
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "fov",
+          "type": "float",
+          "value": 60,
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "presets",
+          "type": "CameraPreset",
+          "value": null,
+          "visible": false,
+          "hole": false,
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "screensize",
+          "type": "vec2",
+          "value": [
+            512,
+            512
+          ],
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "rendersize",
+          "type": "vec2",
+          "value": [
+            512,
+            512
+          ],
+          "visible": false,
+          "hole": false,
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "clearcolor",
+          "type": "vec4",
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "floatbuffer",
+          "type": "bool",
+          "value": false,
+          "hole": false,
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "ipcmode",
+          "type": "bool",
+          "value": false,
+          "hole": false,
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "ColorBar",
+          "type": "ColorBar",
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "showbbox",
+          "type": "bool",
+          "value": false,
+          "hole": false,
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "bboxcolor",
+          "type": "vec4",
+          "value": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "visible": false,
+          "hole": false,
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "Camera",
+          "type": "RenderObject",
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "RenderObject",
+          "type": "RenderObject",
+          "array": [
+            {
+              "name": "RenderObject[0]",
+              "type": "RenderObject",
+              "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+            },
+            {
+              "name": "RenderObject[1]",
+              "type": "RenderObject",
+              "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+            },
+            {
+              "name": "RenderObject[2]",
+              "type": "RenderObject",
+              "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+            }
+          ],
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        }
+      ],
+      "output": [
+        {
+          "name": "Camera",
+          "type": "RenderObject",
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "Image",
+          "type": "BufferImageData",
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        },
+        {
+          "name": "ScreenSize",
+          "type": "vec2",
+          "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f"
+        }
+      ],
+      "customfunc": "\nRenderView = {}\nsetmetatable(RenderView, {__index = HiveBaseModule})\n\nlocal JSON = require('dkjson')\n\nRenderView.new = function (varname)\n    local this = HiveBaseModule.new(varname)\n    this.cam = Camera()    \n    this.property = {\n        screensize = {512, 512},\n        position = {0,0,300},\n        target = {0,0,0},\n        up = {0,1,0},\n        fov = 60,\n        clearcolor = {0,0,0,1},\n        color_file = \"\",\n        -- depth_file = \"\",\n        ipcmode = false,\n        renderer = nil\n    }\n    this.network_ipc = nil\n    this.gen = PrimitiveGenerator()\n    \n    setmetatable(this, {__index=RenderView})\n    return this\nend\n\nfunction insertLineVertex(vlist, v1, v2)\n    for k, v in ipairs(v1) do\n        table.insert(vlist, v);\n    end\n    for k, v in ipairs(v2) do\n        table.insert(vlist, v);\n    end\nend\n\nfunction transform(v, trans)\n\treturn {\n        trans[1] * v[1] + trans[5] * v[2] + trans[9]  * v[3] + trans[13] * 1.0,\n        trans[2] * v[1] + trans[6] * v[2] + trans[10] * v[3] + trans[14] * 1.0,\n        trans[3] * v[1] + trans[7] * v[2] + trans[11] * v[3] + trans[15] * 1.0,\n        --trans[4] * v[1] + trans[8] * v[2] + trans[12] * v[3] + trans[16] * 1.0\n    };\nend\n\nfunction screenSpaceLineVertex(cam, vlist, v1, v2)\n    table.insert(vlist, cam:ConvertToScreenSpace(v1[1], v1[2], v1[3]));\n    table.insert(vlist, cam:ConvertToScreenSpace(v2[1], v2[2], v2[3]));\nend\n\nfunction getBBoxVerts(bmin, bmax)\n    local res = {}\n    local p1 = { bmin[1], bmax[2], bmin[3] };\n    local p2 = { bmax[1], bmax[2], bmin[3] };\n    local p3 = { bmax[1], bmin[2], bmin[3] };\n    local p4 = { bmax[1], bmin[2], bmax[3] };\n    local p5 = { bmin[1], bmin[2], bmax[3] };\n    local p6 = { bmin[1], bmax[2], bmax[3] };\n    table.insert(res, p1);\n    table.insert(res, p2);\n    table.insert(res, p3);\n    table.insert(res, p4);\n    table.insert(res, p5);\n    table.insert(res, p6);\n    table.insert(res, bmin);\n    table.insert(res, bmax);\n    return res;\nend\n\nfunction getBBoxMinMax(verts)\n    local bmin = {\n        math.min(verts[1][1], verts[2][1], verts[3][1], verts[4][1], verts[5][1], verts[6][1], verts[7][1], verts[8][1]),\n        math.min(verts[1][2], verts[2][2], verts[3][2], verts[4][2], verts[5][2], verts[6][2], verts[7][2], verts[8][2]),\n        math.min(verts[1][3], verts[2][3], verts[3][3], verts[4][3], verts[5][3], verts[6][3], verts[7][3], verts[8][3]),\n    };\n    local bmax = {\n        math.max(verts[1][1], verts[2][1], verts[3][1], verts[4][1], verts[5][1], verts[6][1], verts[7][1], verts[8][1]),\n        math.max(verts[1][2], verts[2][2], verts[3][2], verts[4][2], verts[5][2], verts[6][2], verts[7][2], verts[8][2]),\n        math.max(verts[1][3], verts[2][3], verts[3][3], verts[4][3], verts[5][3], verts[6][3], verts[7][3], verts[8][3]),\n    };\n    return {bmin, bmax}\nend\n\nfunction RenderView:Do()\n    self:UpdateValue()\n    local v = self.value\n    \n    self.cam:SetScreenSize(v.rendersize[1], v.rendersize[2])--v.screensize[1], v.screensize[2])\n    self.cam:SetFilename(v.color_file)\n    -- self.cam:SetDepthFilename(v.depth_file)\n    self.cam:ClearColor(v.clearcolor[1],v.clearcolor[2],v.clearcolor[3],v.clearcolor[4])\n    self.cam:LookAt(\n        v.position[1], v.position[2], v.position[3],\n        v.target[1],   v.target[2],   v.target[3],\n        v.up[1],       v.up[2],       v.up[3],\n        v.fov\n    )\n    \n    local temp = {}\n    local targetcam\n-- For Object\n    if v.RenderObject then\n        temp = v.RenderObject\n    end\n-- For bbox\n    if v.Camera then\n        targetcam = v.Camera\n    else\n        targetcam = self.cam\n    end\n    \n    local bbox_verts2D = {}\n    if (v.showbbox == true and v.RenderObject) then\n        local line_verts = {}\n        local shadername = '../shader/const.frag';\n        for i, t in ipairs(v.RenderObject) do\n            local bbox = t:GetBBox();\n            if bbox[1] ~= nil and bbox[2] ~= nil then\n                local verts = getBBoxVerts(bbox[1], bbox[2]);\n                local trans = t:GetTransformMatrix();\n                local bverts = {};\n                for k, v in ipairs(verts) do\n                    table.insert(bverts, transform(v, trans));\n                end\n                --local bboxTransed = getBBoxMinMax(bverts);\n                --bverts = getBBoxVerts(bboxTransed[1], bboxTransed[2]);\n                insertLineVertex(line_verts, bverts[7], bverts[1]);\n                insertLineVertex(line_verts, bverts[1], bverts[2]);\n                insertLineVertex(line_verts, bverts[2], bverts[3]);\n                insertLineVertex(line_verts, bverts[3], bverts[7]);\n                insertLineVertex(line_verts, bverts[7], bverts[5]);\n                insertLineVertex(line_verts, bverts[1], bverts[6]);\n                insertLineVertex(line_verts, bverts[2], bverts[8]);\n                insertLineVertex(line_verts, bverts[3], bverts[4]);\n                insertLineVertex(line_verts, bverts[8], bverts[4]);\n                insertLineVertex(line_verts, bverts[4], bverts[5]);\n                insertLineVertex(line_verts, bverts[5], bverts[6]);\n                insertLineVertex(line_verts, bverts[6], bverts[8]);\n            end\n        end\n        local line = self.gen:LineList(line_verts, #line_verts / 3, 1.0);\n        local linemodel = LineModel();\n        linemodel:Create(line)\n        linemodel:SetShader(shadername)\n        linemodel:SetVec4(\"color\", v.bboxcolor[1], v.bboxcolor[2], v.bboxcolor[3], v.bboxcolor[4]);\n        linemodel:SetLineWidth(1)\n        temp[#temp + 1] = linemodel\n    end\n        \n-- For Camera\n    if v.Camera then\n        temp[#temp + 1] = v.Camera\n        targetcam = v.Camera\n    else\n        temp[#temp + 1] = self.cam\n        targetcam = self.cam\n    end\n\n    if v.floatbuffer then\n        targetcam:SetImageBufferFormat('RGBA32F')\n    else\n        targetcam:SetImageBufferFormat('RGBA8')\n    end\n\n-- dump\n--[[\n    for i,v in pairs(temp) do\n         print('RenderObject->', v);   \n    end\n--]]\n    if v.renderer == nil then\n        return \"Not found renderer\"\n    else\n        -- For Compositor \n          -- ModuleSystem-based HIVE works in a SINGLE PROCESS MODE\n          -- Currently there is no need for IMAGE COMPOSITION     \n  \n        -- v.renderer:enableDepthComposition(v.depthComp);\n        -- v.renderer:setCompositionMergeID(v.compMergeID);\n--[[\n    if v.screensize[1] / 10 < v.rendersize[1] then\n        render(temp, HIVE_fetchEvent)\n    else\n    ]]\n        v.renderer:render(temp)\n    end\n    \n    \n    if network == nil and HIVE_metabin == nil then -- no UI mode        \n        return true\n    end \n    \n    local mode = 'png'\n    -- image save\n    local imageBuffer\n    local imageBufferSize\n    if self.property.ipcmode then\n        mode = 'raw'\n        -- image save\n        local img = targetcam:GetImageBuffer()\t\n        imageBuffer = img:GetBuffer()\n        imageBufferSize = img:GetSize()\n    else    \n        -- image save\n        imageBuffer = HIVE_ImageSaver:SaveMemory(5, targetcam:GetImageBuffer())\n        imageBufferSize = HIVE_ImageSaver:MemorySize()\n    end\n    \n    -- create metabinary\n    --local w = v.screensize[1]\n    --local h = v.screensize[2]\n    local w = v.rendersize[1]\n    local h = v.rendersize[2]\n    print('rendersize=('.. w ..\",\".. h ..\")\", 'cancel=', tostring(HIVE_isRenderCanceled))\n    \n    if targetClientId == nil then\n        return false\n    end\n    \n    local colorbar_rgba = \"\";\n    local colorbar_min = \"0\";\n    local colorbar_max = \"0\";\n    local colobar_color = \"[1, 1, 1, 1]\";\n    local colobar_composite = \"false\";\n    if v.ColorBar then\n        colorbar_rgba = JSON.encode(v.ColorBar.rgba);\n        colorbar_min = tostring(v.ColorBar.min)\n        colorbar_max = tostring(v.ColorBar.max)\n        if v.ColorBar.color ~= nil then\n            colobar_color = JSON.encode(v.ColorBar.color);\n        end\n        if v.ColorBar.composite ~= nil then\n            colobar_composite = tostring(v.ColorBar.composite);\n        end\n    end\n    \n    local json = [[{\n            \"JSONRPC\" : \"2.0\",\n            \"method\" : \"renderedImage\",            \n            \"to\" : ]] .. targetClientId ..[[,\n            \"param\" : {\n                \"type\" : \"]] .. mode .. [[\",\n                \"width\" : \"]] .. w .. [[\",\n                \"height\" : \"]] .. h .. [[\",\n                \"canceled\": ]] .. tostring(HIVE_isRenderCanceled) .. [[,\n                \"varname\": \"]] .. self.varname .. [[\",\n                \"colorbar\": {\n                    \"rgba\": \"]] .. colorbar_rgba .. [[\",\n                    \"min\": \"]] .. colorbar_min .. [[\",\n                    \"max\": \"]] .. colorbar_max .. [[\",\n                    \"color\" : \"]] .. colobar_color .. [[\",\n                    \"composite\" : \"]] .. colobar_composite .. [[\"\n                },\n                \"bbox\" : \"]] ..JSON.encode(bbox_verts2D) .. [[\"\n            },\n            \"id\":0\n    }]]\n    HIVE_metabin:Create(json, imageBuffer, imageBufferSize)\n    --print('JSON=', json, 'size=', imageBufferSize)\n    -- send\n    print('ipcmode', self.property.ipcmode)        \n    if self.property.ipcmode then       \n        if self.network_ipc == nil then\n            local ipcAddress = 'ipc:///tmp/HIVE_IPC_' .. self.varname\n            print('IPC open=', ipcAddress);\n\t        self.network_ipc = LoadModule(\"Network\").Connection()\n\t        local ipcr = self.network_ipc:Connect(ipcAddress)\n\t        print('IPC ret=', ipcr)\n        end\n        print('IPC->', self.network_ipc)\n        self.network_ipc:SendBinary(HIVE_metabin:BinaryBuffer(), HIVE_metabin:BinaryBufferSize())\n        print('IPC SEND!!!!!!!!!!!')\t\t\t   \n\n    else\n        network:SendBinary(HIVE_metabin:BinaryBuffer(), HIVE_metabin:BinaryBufferSize())\n        print('WEBSOCKET SEND!!!!!!!!!!!')\t\t\t   \n\n    end\n    return true\nend\n\nfunction RenderView:Camera()\n    return self.cam\nend\n\nfunction RenderView:Image()\n    return self.cam:GetImageBuffer()\nend\n\nfunction RenderView:Depth()\n    return self.cam:GetDepthBuffer()\nend\n\nfunction RenderView:ScreenSize()\n    return self.value.screensize\nend\n",
+      "uiFunc": "'use strict';\n\nvar _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();\n\nvar _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = require('react-dom');\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\n//import nanomsg from 'nanomsg'\n//import buffercopy from 'buffercopy'\n\nvar minWidth = 256;\nvar minHeight = 100;\nvar footerHeight = 50;\n\nfunction progressiveMin(val) {\n\treturn parseInt(val / 16.0, 10);\n}\nfunction zeroPadding(n, c) {\n\treturn (new Array(c + 1).join('0') + n).slice(-c);\n}\n\nvar RenderView = (function (_React$Component) {\n\t_inherits(RenderView, _React$Component);\n\n\tfunction RenderView(props) {\n\t\t_classCallCheck(this, RenderView);\n\n\t\t_get(Object.getPrototypeOf(RenderView.prototype), 'constructor', this).call(this, props);\n\t\tconsole.log('RenderView Constructor:', props);\n\n\t\tthis.node = props.node;\n\t\tthis.action = props.action;\n\t\tthis.store = props.store;\n\n\t\tthis.varname = this.node.varname;\n\t\tthis.colorbarHeight = 15;\n\t\tthis.colorbarAreaHeight = 40;\n\n\t\tthis.state = {\n\t\t\twidth: minWidth,\n\t\t\theight: minHeight,\n\t\t\tcolorbar: null,\n\t\t\tbbox: null\n\t\t};\n\n\t\t// Mouse\n\t\tthis.mouseState = 0;\n\t\tthis.oldmx = 0;\n\t\tthis.oldmy = 0;\n\n\t\t// View\n\t\tthis.componentDidUpdate = this.componentDidUpdate.bind(this);\n\t\tthis.imageRecieved = this.imageRecieved.bind(this);\n\t\tthis.imageRecieveWrap = this.imageRecieveWrap.bind(this);\n\t\tthis.onPanelSizeChanged = this.onPanelSizeChanged.bind(this);\n\t\tthis.getInputValue = this.getInputValue.bind(this);\n\t\tthis.onEnterCameraButton = this.onEnterCameraButton.bind(this);\n\t\tthis.onLeaveCameraButton = this.onLeaveCameraButton.bind(this);\n\t\tthis.onClickCameraButton = this.onClickCameraButton.bind(this);\n\t\tthis.onClickCameraRegisterButton = this.onClickCameraRegisterButton.bind(this);\n\t\tthis.onColorChange = this.onColorChange.bind(this);\n\t\tthis.reRender = this.reRender.bind(this);\n\n\t\tthis.updatePreset = this.updatePreset.bind(this);\n\n\t\tthis.reRender(true);\n\t}\n\n\t_createClass(RenderView, [{\n\t\tkey: 'progressiveUpdate',\n\t\tvalue: function progressiveUpdate(param) {\n\t\t\tvar _this = this;\n\n\t\t\tvar w = param.width;\n\t\t\tvar h = param.height;\n\t\t\tvar varname = this.node.varname;\n\t\t\tvar ssize = this.getInputValue(\"screensize\");\n\t\t\tif (this.mouseState > 0) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tif (w < ssize[0] || h < ssize[1]) {\n\t\t\t\tw = ssize[0];\n\t\t\t\th = ssize[1];\n\t\t\t\t//console.log('PROGRESSIVE:', w, h);\n\t\t\t\tsetTimeout(function () {\n\t\t\t\t\t_this.action.changeNodeInput({\n\t\t\t\t\t\tvarname: varname,\n\t\t\t\t\t\tinput: {\n\t\t\t\t\t\t\t\"rendersize\": [w, h]\n\t\t\t\t\t\t}\n\t\t\t\t\t});\n\t\t\t\t}, 0);\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'imageRecieved',\n\t\tvalue: function imageRecieved(err, param, data) {\n\t\t\tvar buffer;\n\t\t\tvar varname = this.node.varname;\n\t\t\tif (param.varname !== varname) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tif (param.type === 'jpg') {\n\t\t\t\tbuffer = new Blob([data]);\n\t\t\t} else if (param.type == 'png') {\n\t\t\t\tbuffer = new Blob([data]);\n\t\t\t} else {\n\t\t\t\tbuffer = data;\n\t\t\t}\n\t\t\tvar colorbar = {\n\t\t\t\trgba: param.colorbar.rgba ? JSON.parse(param.colorbar.rgba) : null,\n\t\t\t\tmin: Number(param.colorbar.min),\n\t\t\t\tmax: Number(param.colorbar.max),\n\t\t\t\tcomposite: param.colorbar.composite == \"true\",\n\t\t\t\tcolor: param.colorbar.color ? JSON.parse(param.colorbar.color) : null\n\t\t\t};\n\n\t\t\tvar bbox = param.bbox ? JSON.parse(param.bbox) : null;\n\n\t\t\tthis.setState({\n\t\t\t\timage: buffer,\n\t\t\t\tcolorbar: colorbar,\n\t\t\t\tbbox: bbox\n\t\t\t});\n\t\t\tthis.state.colorbar = colorbar;\n\t\t\tthis.drawColorBar();\n\n\t\t\t// progressive update\n\t\t\tthis.progressiveUpdate(param);\n\t\t}\n\t}, {\n\t\tkey: 'hasIPCAddress',\n\t\tvalue: function hasIPCAddress() {\n\t\t\treturn this.getInputValue('ipcmode');\n\t\t}\n\t}, {\n\t\tkey: 'hasColorBar',\n\t\tvalue: function hasColorBar() {\n\t\t\treturn this.state.colorbar && this.state.colorbar.rgba;\n\t\t}\n\t}, {\n\t\tkey: 'closeForIPCImageTransfer',\n\t\tvalue: function closeForIPCImageTransfer() {\n\t\t\tif (this.sc === undefined) {} else {\n\t\t\t\tthis.sc.close();\n\t\t\t\tthis.sc = undefined;\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'singleConv',\n\t\tvalue: function singleConv(color) {\n\t\t\tvar r = zeroPadding(new Number(parseInt(color[0] * 255)).toString(16), 2);\n\t\t\tvar g = zeroPadding(new Number(parseInt(color[1] * 255)).toString(16), 2);\n\t\t\tvar b = zeroPadding(new Number(parseInt(color[2] * 255)).toString(16), 2);\n\t\t\treturn '#' + r + g + b;\n\t\t}\n\t}, {\n\t\tkey: 'drawRenderedImage',\n\t\tvalue: function drawRenderedImage(imageObject) {\n\t\t\tvar imgElem = document.getElementById(this.getCanvasName('img'));\n\t\t\timgElem.src = imageObject;\n\t\t\tvar canElem = document.getElementById(this.getCanvasName('canvas'));\n\t\t\tvar ctx = canElem.getContext(\"2d\");\n\t\t\timgElem.onload = (function () {\n\t\t\t\tctx.fillStyle = \"rgb(255, 255, 255)\";\n\t\t\t\tvar screensize = this.getInputValue(\"screensize\");\n\t\t\t\tctx.fillRect(0, 0, screensize[0], screensize[1]);\n\t\t\t\tctx.setTransform(1, 0, 0, -1, 0, screensize[1]);\n\t\t\t\tctx.drawImage(imgElem, 0, 0, screensize[0], screensize[1]);\n\t\t\t\tctx.setTransform(1, 0, 0, 1, 0, 0);\n\t\t\t\t// TODO\n\t\t\t\tthis.drawBBox();\n\t\t\t\tURL.revokeObjectURL(imgElem.src);\n\t\t\t}).bind(this);\n\t\t}\n\t}, {\n\t\tkey: 'readyForIPCImageTransfer',\n\t\tvalue: function readyForIPCImageTransfer() {\n\t\t\tvar _this2 = this;\n\n\t\t\t// Electron only\n\t\t\tif (this.sc === undefined && window && window.process && window.process.type) {\n\t\t\t\tvar nano = process.mainModule.require('nanomsg');\n\t\t\t\tvar buffercopy = process.mainModule.require('buffercopy');\n\t\t\t\tvar sc = nano.socket('pair');\n\t\t\t\tthis.sc = sc;\n\t\t\t\tvar meta = process.mainModule.require(process.mainModule.require(\"path\").resolve('./lib/metabinary')); // path from index.html\n\t\t\t\tthis.meta = meta;\n\t\t\t\tvar ipcAddress = 'ipc:///tmp/HIVE_IPC_' + this.varname;\n\t\t\t\tvar ret = sc.bind(ipcAddress);\n\t\t\t\tconsole.log('IPC bind = ', ret, ipcAddress);\n\n\t\t\t\tthis.sc.on('data', function (data) {\n\t\t\t\t\t//console.log('ONDATAA!!!!', this.meta);\n\t\t\t\t\tif (meta === undefined) {\n\t\t\t\t\t\t// ????? Why undefined???\n\t\t\t\t\t\tmeta = meta;\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif (!_this2.meta.loadMetaBinary(data, function (meta, data) {\n\t\t\t\t\t\tvar w,\n\t\t\t\t\t\t    h,\n\t\t\t\t\t\t    param = meta.param;\n\t\t\t\t\t\tif (param.type === 'jpg') {\n\t\t\t\t\t\t\t// resultElement is img.\n\t\t\t\t\t\t\t_this2.drawRenderedImage(URL.createObjectURL(new Blob([data], { type: \"image/jpeg\" })));\n\t\t\t\t\t\t} else if (param.type === 'png') {\n\t\t\t\t\t\t\t// resultElement is img.\n\t\t\t\t\t\t\t_this2.drawRenderedImage(URL.createObjectURL(new Blob([data], { type: \"image/png\" })));\n\t\t\t\t\t\t} else if (param.type === 'raw') {\n\t\t\t\t\t\t\t//console.log('UPDATE CANVAS!!!');\n\n\t\t\t\t\t\t\t// resultElement is canvas.\n\t\t\t\t\t\t\tvar resultElement = document.getElementById(_this2.getCanvasName('canvas'));\n\t\t\t\t\t\t\tif (resultElement) {\n\t\t\t\t\t\t\t\t// why undefined, sometime??\n\t\t\t\t\t\t\t\tresultElement.setAttribute('width', param.width), resultElement.setAttribute('height', param.height);\n\t\t\t\t\t\t\t\tvar context = resultElement.getContext('2d');\n\t\t\t\t\t\t\t\tvar imageData = context.createImageData(param.width, param.height);\n\t\t\t\t\t\t\t\tbuffercopy.buffercopy(data, imageData.data);\n\t\t\t\t\t\t\t\tcontext.putImageData(imageData, 0, 0);\n\n\t\t\t\t\t\t\t\t_this2.drawBBox();\n\n\t\t\t\t\t\t\t\t_this2.progressiveUpdate(param);\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t})) {\n\t\t\t\t\t\tconsole.error('Not metabin foramt');\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'componentDidUpdate',\n\t\tvalue: function componentDidUpdate() {\n\t\t\t// キャンバスの更新.\n\t\t\tif (this.state && this.state.image) {\n\t\t\t\tif (this.hasIPCAddress()) {\n\t\t\t\t\t/*    let canvas = document.getElementById(this.getCanvasName());\n     //let canvas = ReactDOM.findDOMNode(this.refs.canvas);\n     let context = canvas.getContext('2d');\n     let width = this.state.param.width;\n     let height = this.state.param.height;\n     canvas.setAttribute('width', width);\n     canvas.setAttribute('height', height);\n         //console.error('[inst]', nanomsg, buffercopy);\n     if (width * height * 4 == this.state.image.length) {\n     let imageData = context.createImageData(width, height);\n     buffercopy.buffercopy(this.state.image, imageData.data);\n     context.putImageData(imageData, 0, 0);\n     } else {\n     console.error(\"image size err:\", width, height);\n     }*/\n\t\t\t\t} else {\n\t\t\t\t\t\t//\t\tlet imgElem = ReactDOM.findDOMNode(this.refs.renderviewimage);\n\t\t\t\t\t\t//\t\timgElem.src = URL.createObjectURL(this.state.image, {type: \"image/jpeg\"});\n\t\t\t\t\t\tthis.drawRenderedImage(URL.createObjectURL(this.state.image, { type: \"image/png\" }));\n\t\t\t\t\t\t//console.log(imgElem);\n\t\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'reRender',\n\t\tvalue: function reRender(useProgressive) {\n\t\t\tvar _this3 = this;\n\n\t\t\tvar screensize = this.getInputValue(\"screensize\");\n\t\t\tsetTimeout(function () {\n\t\t\t\tif (useProgressive) {\n\t\t\t\t\t_this3.action.changeNodeInput({\n\t\t\t\t\t\tvarname: _this3.props.node.varname,\n\t\t\t\t\t\tinput: {\n\t\t\t\t\t\t\t\"rendersize\": [progressiveMin(screensize[0]), progressiveMin(screensize[1])]\n\t\t\t\t\t\t}\n\t\t\t\t\t});\n\t\t\t\t} else {\n\t\t\t\t\t_this3.action.changeNodeInput({\n\t\t\t\t\t\tvarname: _this3.props.node.varname,\n\t\t\t\t\t\tinput: {\n\t\t\t\t\t\t\t\"rendersize\": [screensize[0], screensize[1]]\n\t\t\t\t\t\t}\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t}, 0);\n\t\t}\n\t}, {\n\t\tkey: 'getInputValue',\n\t\tvalue: function getInputValue(key) {\n\t\t\tfor (var i = 0; i < this.node.input.length; i = i + 1) {\n\t\t\t\tif (this.node.input[i].name === key) {\n\t\t\t\t\treturn this.node.input[i].value;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'viewRot',\n\t\tvalue: function viewRot(rotx, roty, rotz) {\n\t\t\tvar target = JSON.parse(JSON.stringify(this.getInputValue(\"target\")));\n\t\t\tvar position = JSON.parse(JSON.stringify(this.getInputValue(\"position\")));\n\t\t\tvar eyedir = subtract(position, target);\n\t\t\tvar v = vec4(eyedir[0], eyedir[1], eyedir[2], 0.0);\n\t\t\tvar az = normalize(subtract(position, target));\n\t\t\tvar ax = normalize(cross(vec3(0, 1, 0), az));\n\t\t\tvar ay = normalize(cross(az, ax));\n\t\t\tvar rx = rotate(rotx, ax);\n\t\t\tvar ry = rotate(roty, ay);\n\t\t\tvar ssize = JSON.parse(JSON.stringify(this.getInputValue(\"screensize\")));\n\t\t\tvar rw = progressiveMin(ssize[0]);\n\t\t\tvar rh = progressiveMin(ssize[1]);\n\n\t\t\tv = vec4(dot(ry[0], v), dot(ry[1], v), dot(ry[2], v), 0.0);\n\t\t\tv = vec3(dot(rx[0], v), dot(rx[1], v), dot(rx[2], v));\n\t\t\tvar pos = add(target, v);\n\n\t\t\tif (Math.abs(dot(normalize(subtract(target, pos)), vec3(0, 1, 0))) < 0.99) {\n\t\t\t\tvar varname = this.node.varname;\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": pos,\n\t\t\t\t\t\t\"target\": target,\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'updatePreset',\n\t\tvalue: function updatePreset() {\n\t\t\tvar layer = Number(this.refs.presetSelect.value);\n\t\t\tvar presets = this.getInputValue(\"presets\");\n\t\t\tif (!presets) {\n\t\t\t\tpresets = {};\n\t\t\t}\n\t\t\tif (!presets.hasOwnProperty(layer)) {\n\t\t\t\tpresets[layer] = {};\n\t\t\t}\n\t\t\tvar preset = presets[layer];\n\t\t\tpreset.position = JSON.parse(JSON.stringify(this.getInputValue(\"position\")));\n\t\t\tpreset.target = JSON.parse(JSON.stringify(this.getInputValue(\"target\")));\n\t\t\tpreset.up = JSON.parse(JSON.stringify(this.getInputValue(\"up\")));\n\t\t\tpreset.fov = this.getInputValue(\"fov\");\n\n\t\t\tthis.action.changeNodeInput({\n\t\t\t\tvarname: this.node.varname,\n\t\t\t\tinput: {\n\t\t\t\t\t\"presets\": presets\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'viewTrans',\n\t\tvalue: function viewTrans(tx, ty, tz) {\n\t\t\tvar target = JSON.parse(JSON.stringify(this.getInputValue(\"target\")));\n\t\t\tvar position = JSON.parse(JSON.stringify(this.getInputValue(\"position\")));\n\t\t\tvar mv = vec3(-tx, ty, 0.0);\n\t\t\tvar az = normalize(subtract(position, target));\n\t\t\tvar ax = normalize(cross(vec3(0, 1, 0), az));\n\t\t\tvar ay = normalize(cross(az, ax));\n\t\t\tvar mx = transpose(mat3(ax, ay, az));\n\t\t\tvar mm = vec3(vec3(dot(mv, mx[0]), dot(mv, mx[1]), dot(mv, mx[2])));\n\t\t\tvar pos = add(add(position, scale(-tx, ax)), scale(ty, ay));\n\t\t\tvar tar = add(add(target, scale(-tx, ax)), scale(ty, ay));\n\t\t\tvar ssize = JSON.parse(JSON.stringify(this.getInputValue(\"screensize\")));\n\t\t\tvar rw = progressiveMin(ssize[0]);\n\t\t\tvar rh = progressiveMin(ssize[1]);\n\n\t\t\tvar varname = this.node.varname;\n\t\t\tthis.action.changeNodeInput({\n\t\t\t\tvarname: varname,\n\t\t\t\tinput: {\n\t\t\t\t\t\"position\": pos,\n\t\t\t\t\t\"target\": tar,\n\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'viewZoom',\n\t\tvalue: function viewZoom(zoom) {\n\t\t\tvar target = JSON.parse(JSON.stringify(this.getInputValue(\"target\")));\n\t\t\tvar position = JSON.parse(JSON.stringify(this.getInputValue(\"position\")));\n\t\t\tvar v = subtract(position, target);\n\t\t\tvar ssize = JSON.parse(JSON.stringify(this.getInputValue(\"screensize\")));\n\t\t\tvar rw = progressiveMin(ssize[0]);\n\t\t\tvar rh = progressiveMin(ssize[1]);\n\n\t\t\tvar r = 1.0 - zoom / 1000.0;\n\t\t\tv = scale(r, v);\n\t\t\tposition = add(target, v);\n\t\t\tvar varname = this.node.varname;\n\t\t\tthis.action.changeNodeInput({\n\t\t\t\tvarname: varname,\n\t\t\t\tinput: {\n\t\t\t\t\t\"position\": position,\n\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'onImgMouseDown',\n\t\tvalue: function onImgMouseDown(event) {\n\t\t\tevent.preventDefault();\n\t\t\tthis.mouseState = 1;\n\t\t\tthis.oldmx = event.clientX;\n\t\t\tthis.oldmy = event.clientY;\n\t\t}\n\t}, {\n\t\tkey: 'onImgMouseMove',\n\t\tvalue: function onImgMouseMove(event) {\n\t\t\tif (this.mouseState > 0) {\n\t\t\t\tevent.preventDefault();\n\n\t\t\t\tvar dx = event.clientX - this.oldmx;\n\t\t\t\tvar dy = event.clientY - this.oldmy;\n\t\t\t\t//console.log('mmove', dx, dy);\n\n\t\t\t\tif (event.button === 0) {\n\t\t\t\t\tthis.viewRot(-dy * 0.5, -dx * 0.5, 0.0);\n\t\t\t\t} else if (event.button === 1) {\n\t\t\t\t\tthis.viewTrans(dx, dy);\n\t\t\t\t} else if (event.button === 2) {\n\t\t\t\t\tthis.viewZoom(dx + dy);\n\t\t\t\t}\n\n\t\t\t\tthis.oldmx = event.clientX;\n\t\t\t\tthis.oldmy = event.clientY;\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'onImgMouseUp',\n\t\tvalue: function onImgMouseUp(event) {\n\t\t\tif (this.mouseState !== 0) {\n\t\t\t\tthis.reRender(false);\n\t\t\t}\n\t\t\tthis.mouseState = 0;\n\t\t}\n\t}, {\n\t\tkey: 'imageRecieveWrap',\n\t\tvalue: function imageRecieveWrap(err, data) {\n\t\t\tvar _this4 = this;\n\n\t\t\tif (data.varname !== this.node.varname) {\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\tif (this.hasIPCAddress()) {\n\t\t\t\tthis.readyForIPCImageTransfer();\n\t\t\t}\n\n\t\t\tvar screensize = this.getInputValue(\"screensize\");\n\t\t\tvar panelsize = data.panel.size;\n\t\t\tif (screensize[0] !== panelsize[0] || screensize[1] + footerHeight !== panelsize[1]) {\n\t\t\t\t(function () {\n\t\t\t\t\tvar panel = JSON.parse(JSON.stringify(data.panel));\n\t\t\t\t\tpanel.size[0] = Number(screensize[0]);\n\t\t\t\t\tpanel.size[1] = Number(screensize[1] + footerHeight);\n\t\t\t\t\tsetTimeout(function () {\n\t\t\t\t\t\t_this4.action.changeNode({\n\t\t\t\t\t\t\tvarname: _this4.node.varname,\n\t\t\t\t\t\t\tpanel: panel\n\t\t\t\t\t\t});\n\t\t\t\t\t}, 0);\n\t\t\t\t})();\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'onPanelSizeChanged',\n\t\tvalue: function onPanelSizeChanged(err, data) {\n\t\t\tvar _this5 = this;\n\n\t\t\tif (data.varname !== this.node.varname) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tif (this.props.node.panel.visible) {\n\t\t\t\tvar width = Math.max(this.props.node.panel.size[0], minWidth);\n\t\t\t\tvar height = Math.max(this.props.node.panel.size[1] - footerHeight, minHeight);\n\t\t\t\tif (Number(this.state.width) !== width || Number(this.state.height) !== height) {\n\t\t\t\t\tthis.setState({\n\t\t\t\t\t\twidth: width,\n\t\t\t\t\t\theight: height\n\t\t\t\t\t});\n\n\t\t\t\t\tsetTimeout(function () {\n\t\t\t\t\t\tvar width = Math.max(_this5.props.node.panel.size[0], minWidth);\n\t\t\t\t\t\tvar height = Math.max(_this5.props.node.panel.size[1] - footerHeight, minHeight);\n\n\t\t\t\t\t\t_this5.action.changeNodeInput({\n\t\t\t\t\t\t\tvarname: _this5.props.node.varname,\n\t\t\t\t\t\t\tinput: {\n\t\t\t\t\t\t\t\t\"screensize\": [width, height],\n\t\t\t\t\t\t\t\t\"rendersize\": [progressiveMin(width), progressiveMin(height)]\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t});\n\t\t\t\t\t}, 0);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'onBBoxShowChange',\n\t\tvalue: function onBBoxShowChange(ev) {\n\t\t\tvar isShow = ev.target.checked;\n\t\t\tthis.action.changeNodeInput({\n\t\t\t\tvarname: this.props.node.varname,\n\t\t\t\tinput: {\n\t\t\t\t\t\"showbbox\": isShow\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'onPresetChange',\n\t\tvalue: function onPresetChange(ev) {\n\t\t\tvar number = Number(ev.target.value);\n\t\t\tif (number === null || number === undefined) {\n\t\t\t\tconsole.error(\"invalid camera layer\");return;\n\t\t\t}\n\t\t\tvar ssize = this.getInputValue(\"screensize\");\n\t\t\tvar presets = this.getInputValue(\"presets\");\n\t\t\tif (!presets) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tpresets.currentPreset = number;\n\t\t\tvar rw = progressiveMin(ssize[0]);\n\t\t\tvar rh = progressiveMin(ssize[1]);\n\t\t\tif (presets.hasOwnProperty(number)) {\n\t\t\t\tvar preset = presets[number];\n\t\t\t\tif (preset.hasOwnProperty(\"position\") && preset.hasOwnProperty(\"target\") && preset.hasOwnProperty(\"up\") && preset.hasOwnProperty(\"fov\")) {\n\t\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\t\tvarname: this.props.node.varname,\n\t\t\t\t\t\tinput: {\n\t\t\t\t\t\t\tposition: preset.position,\n\t\t\t\t\t\t\ttarget: preset.target,\n\t\t\t\t\t\t\tup: preset.up,\n\t\t\t\t\t\t\tfov: preset.fov,\n\t\t\t\t\t\t\tpresets: presets\n\t\t\t\t\t\t}\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: this.props.node.varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [0, 0, 300],\n\t\t\t\t\t\t\"target\": [0, 0, 0],\n\t\t\t\t\t\t\"up\": [0, 1, 0],\n\t\t\t\t\t\t\"fov\": 60,\n\t\t\t\t\t\t\"rendersize\": [rw, rh],\n\t\t\t\t\t\t\"presets\": presets\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'onColorChange',\n\t\tvalue: function onColorChange(eve) {\n\t\t\tvar elem = _reactDom2['default'].findDOMNode(this.refs.bboxcolor);\n\t\t\tvar val = elem.value.match(/[0-9|a-f]{2}/ig);\n\t\t\tvar r = parseInt(val[0], 16) / 255;\n\t\t\tvar g = parseInt(val[1], 16) / 255;\n\t\t\tvar b = parseInt(val[2], 16) / 255;\n\t\t\tvar color = [r, g, b, this.getInputValue('bboxcolor')[3]];\n\t\t\t// send action from color input change\n\t\t\tthis.props.action.changeNodeInput({\n\t\t\t\tvarname: this.props.node.varname,\n\t\t\t\tinput: {\n\t\t\t\t\tbboxcolor: color\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {\n\t\t\tvar colorbar = _reactDom2['default'].findDOMNode(this.refs.colorbar);\n\t\t\tcolorbar.width = 256;\n\t\t\tcolorbar.height = 40;\n\t\t\tthis.colorctx = colorbar.getContext('2d');\n\n\t\t\tvar imgElem = document.getElementById(this.getCanvasName('img'));\n\t\t\timgElem.addEventListener('mousedown', this.onImgMouseDown.bind(this), true);\n\n\t\t\tvar canElem = document.getElementById(this.getCanvasName('canvas'));\n\t\t\tcanElem.addEventListener('mousedown', this.onImgMouseDown.bind(this), true);\n\n\t\t\t// canvas.tabIndex = 1000;\n\t\t\twindow.addEventListener('mouseup', this.onImgMouseUp.bind(this));\n\t\t\twindow.addEventListener('mousemove', this.onImgMouseMove.bind(this), true);\n\n\t\t\tvar NODE_INPUT_CHANGED = \"node_input_changed\";\n\t\t\tthis.store.on(NODE_INPUT_CHANGED, this.imageRecieveWrap);\n\n\t\t\tvar Store_IMAGE_RECIEVED = \"image_revieved\";\n\t\t\tthis.store.on(Store_IMAGE_RECIEVED, this.imageRecieved);\n\n\t\t\tthis.store.on(\"panel_size_changed\", this.onPanelSizeChanged);\n\n\t\t\tvar presets = this.getInputValue(\"presets\");\n\t\t\tif (presets && presets.hasOwnProperty(\"currentPreset\")) {\n\t\t\t\tthis.refs.presetSelect.selectedIndex = presets.currentPreset - 1;\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'componentWillUnmount',\n\t\tvalue: function componentWillUnmount() {\n\t\t\tvar imgElem = document.getElementById(this.getCanvasName('img'));\n\t\t\timgElem.removeEventListener('mousedown', this.onImgMouseDown.bind(this), true);\n\t\t\tvar canElem = document.getElementById(this.getCanvasName('canvas'));\n\t\t\tcanElem.addEventListener('mousedown', this.onImgMouseDown.bind(this), true);\n\n\t\t\twindow.removeEventListener('mouseup', this.onImgMouseUp.bind(this));\n\t\t\twindow.removeEventListener('mousemove', this.onImgMouseMove.bind(this));\n\t\t\tvar Store_IMAGE_RECIEVED = \"image_revieved\";\n\t\t\tthis.store.off(Store_IMAGE_RECIEVED, this.imageRecieved);\n\n\t\t\tvar NODE_INPUT_CHANGED = \"node_input_changed\";\n\t\t\tthis.store.off(NODE_INPUT_CHANGED, this.imageRecieveWrap);\n\n\t\t\tthis.store.off(\"panel_size_changed\", this.onPanelSizeChanged);\n\t\t\tthis.closeForIPCImageTransfer();\n\t\t}\n\t}, {\n\t\tkey: 'styles',\n\t\tvalue: function styles() {\n\t\t\treturn {\n\t\t\t\tbounds: {\n\t\t\t\t\tminWidth: String(minWidth) + \"px\",\n\t\t\t\t\tminHeight: String(minHeight) + \"px\"\n\t\t\t\t},\n\t\t\t\tcanvas: {\n\t\t\t\t\tpostion: \"relative\",\n\t\t\t\t\tleft: \"0px\",\n\t\t\t\t\ttop: \"0px\",\n\t\t\t\t\twidth: String(this.canvasSize.bind(this)()[0]) + \"px\",\n\t\t\t\t\theight: String(this.canvasSize.bind(this)()[1]) + \"px\",\n\t\t\t\t\ttransform: \"scale(1.0,-1.0)\",\n\t\t\t\t\tdisplay: \"block\" //(this.hasIPCAddress() ? \"block\" : \"none\")\n\t\t\t\t},\n\t\t\t\timage: {\n\t\t\t\t\tpostion: \"relative\",\n\t\t\t\t\tleft: \"0px\",\n\t\t\t\t\ttop: \"0px\",\n\t\t\t\t\twidth: String(this.canvasSize.bind(this)()[0]) + \"px\",\n\t\t\t\t\theight: String(this.canvasSize.bind(this)()[1]) + \"px\",\n\t\t\t\t\tdisplay: \"none\" //(this.hasIPCAddress() ? \"none\" : \"block\")\n\t\t\t\t},\n\t\t\t\tcameraButtonArea: {\n\t\t\t\t\theight: \"25px\",\n\t\t\t\t\tbackgroundColor: \"rgba(67, 67, 67, 0.9)\"\n\t\t\t\t},\n\t\t\t\tcameraButton: {\n\t\t\t\t\twidth: \"32px\",\n\t\t\t\t\theight: \"20px\",\n\t\t\t\t\tfloat: \"left\",\n\t\t\t\t\tbackgroundColor: \"gray\",\n\t\t\t\t\tborder: \"1px solid darkgray\",\n\t\t\t\t\tborderRadius: \"3px\",\n\t\t\t\t\tmargin: \"2px\",\n\t\t\t\t\ttextAlign: \"center\",\n\t\t\t\t\tfontSize: \"11px\"\n\t\t\t\t},\n\t\t\t\tregisterButton: {\n\t\t\t\t\twidth: \"50px\",\n\t\t\t\t\theight: \"20px\",\n\t\t\t\t\tbackgroundColor: \"gray\",\n\t\t\t\t\tborder: \"1px solid darkgray\",\n\t\t\t\t\tborderRadius: \"3px\",\n\t\t\t\t\tmarginLeft: \"2px\",\n\t\t\t\t\ttextAlign: \"center\",\n\t\t\t\t\tfontSize: \"11px\",\n\t\t\t\t\tposition: \"absolute\"\n\t\t\t\t},\n\t\t\t\tpresetArea: {\n\t\t\t\t\theight: \"25px\",\n\t\t\t\t\tpadding: \"2px\",\n\t\t\t\t\tbackgroundColor: \"rgba(67, 67, 67, 0.9)\"\n\t\t\t\t},\n\t\t\t\tcolorbar: {\n\t\t\t\t\tposition: \"absolute\",\n\t\t\t\t\ttop: this.state.height - 5 + \"px\",\n\t\t\t\t\tleft: \"3px\",\n\t\t\t\t\tdisplay: this.hasColorBar() ? \"block\" : \"none\"\n\t\t\t\t},\n\t\t\t\tpresetsSelect: {\n\t\t\t\t\twidth: \"100px\",\n\t\t\t\t\theight: \"20px\",\n\t\t\t\t\tbackgroundColor: \"white\"\n\t\t\t\t},\n\t\t\t\tcolorInputs: {\n\t\t\t\t\twidth: \"20px\",\n\t\t\t\t\theight: \"20px\",\n\t\t\t\t\tmargin: \"2px 0px\",\n\t\t\t\t\tpadding: \"0px\"\n\t\t\t\t}\n\t\t\t};\n\t\t}\n\n\t\t/*onChange(i, event) {\n      let text = event.target.value;\n      this.setState({text});\n      const inputs = JSON.parse(JSON.stringify(this.node.input));\n      inputs[5].value[i] = parseFloat(text);\n      const varname = this.node.varname;\n      this.action.changeNode({\n          varname: varname,\n          input: inputs\n      });\n  }*/\n\n\t}, {\n\t\tkey: 'onEnterCameraButton',\n\t\tvalue: function onEnterCameraButton(ev) {\n\t\t\tev.target.style.backgroundColor = \"darkgray\";\n\t\t\tev.target.style.cursor = \"pointer\";\n\t\t}\n\t}, {\n\t\tkey: 'onLeaveCameraButton',\n\t\tvalue: function onLeaveCameraButton(ev) {\n\t\t\tev.target.style.backgroundColor = \"gray\";\n\t\t\tev.target.style.cursor = \"default\";\n\t\t}\n\t}, {\n\t\tkey: 'onClickCameraRegisterButton',\n\t\tvalue: function onClickCameraRegisterButton(ev) {\n\t\t\tthis.updatePreset();\n\t\t}\n\t}, {\n\t\tkey: 'onClickCameraButton',\n\t\tvalue: function onClickCameraButton(ev) {\n\t\t\tvar varname = this.node.varname;\n\t\t\tvar pos = this.getInputValue('position');\n\t\t\tvar tar = this.getInputValue('target');\n\t\t\tvar up = this.getInputValue('up');\n\t\t\tvar len = length(subtract(tar, pos));\n\t\t\tvar ssize = this.getInputValue(\"screensize\");\n\t\t\tvar rw = progressiveMin(ssize[0]);\n\t\t\tvar rh = progressiveMin(ssize[1]);\n\n\t\t\tif (ev.target === this.refs.reset) {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [0, 0, 300],\n\t\t\t\t\t\t\"target\": [0, 0, 0],\n\t\t\t\t\t\t\"up\": [0, 1, 0],\n\t\t\t\t\t\t\"fov\": 60,\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t} else if (ev.target === this.refs.plusX) {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [len, tar[1], tar[2]],\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t} else if (ev.target === this.refs.minusX) {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [-len, tar[1], tar[2]],\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t} else if (ev.target === this.refs.plusY) {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [tar[0], len, tar[2] + 0.001],\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t} else if (ev.target === this.refs.minusY) {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [tar[0], -len, tar[2] + 0.001],\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t} else if (ev.target === this.refs.plusZ) {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [tar[0], tar[1], -len],\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t} else if (ev.target === this.refs.minusZ) {\n\t\t\t\tthis.action.changeNodeInput({\n\t\t\t\t\tvarname: varname,\n\t\t\t\t\tinput: {\n\t\t\t\t\t\t\"position\": [tar[0], tar[1], len],\n\t\t\t\t\t\t\"rendersize\": [rw, rh]\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'canvasSize',\n\t\tvalue: function canvasSize() {\n\t\t\tif (this.refs.canvas_wrap) {\n\t\t\t\tvar ssize = JSON.parse(JSON.stringify(this.getInputValue(\"screensize\")));\n\t\t\t\treturn [Math.max(Number(ssize[0]), minWidth), Math.max(Number(ssize[1]), minHeight)];\n\t\t\t}\n\t\t\treturn [Math.max(this.props.node.panel.size[0], minWidth), Math.max(this.props.node.panel.size[1], minHeight)];\n\t\t}\n\t}, {\n\t\tkey: 'drawColorBar',\n\t\tvalue: function drawColorBar() {\n\t\t\tif (this.hasColorBar()) {\n\t\t\t\tvar rgba = this.state.colorbar.rgba;\n\t\t\t\tthis.colorctx.fillStyle = \"rgb(255, 255, 255)\";\n\t\t\t\tthis.colorctx.clearRect(0, 0, rgba.length / 4, this.colorbarAreaHeight);\n\t\t\t\tvar colorData = this.colorctx.getImageData(0, 0, rgba.length / 4, this.colorbarHeight);\n\n\t\t\t\tvar color = \"rgb(255, 255, 255)\";\n\t\t\t\tif (this.state.colorbar.color) {\n\t\t\t\t\tvar col = this.state.colorbar.color;\n\t\t\t\t\tcolor = \"rgba(\" + String(Math.round(col[0] * 0xFF)) + \",\" + String(Math.round(col[1] * 0xFF)) + \",\" + String(Math.round(col[2] * 0xFF)) + \",\" + String(Math.round(col[3] * 0xFF)) + \")\";\n\t\t\t\t}\n\t\t\t\tfor (var i = 0; i < rgba.length; i += 4) {\n\t\t\t\t\tvar r = rgba[i + 0];\n\t\t\t\t\tvar g = rgba[i + 1];\n\t\t\t\t\tvar b = rgba[i + 2];\n\t\t\t\t\tvar a = rgba[i + 3] / 255.0;\n\t\t\t\t\tfor (var k = 0; k < this.colorbarHeight; k++) {\n\t\t\t\t\t\tvar backgrd = (1.0 - a) * ((i / 4 / 8 | 0) % 2 ^ (k / 8 | 0) % 2) * 155;\n\t\t\t\t\t\tcolorData.data[k * rgba.length + i + 0] = r * a + backgrd;\n\t\t\t\t\t\tcolorData.data[k * rgba.length + i + 1] = g * a + backgrd;\n\t\t\t\t\t\tcolorData.data[k * rgba.length + i + 2] = b * a + backgrd;\n\t\t\t\t\t\tcolorData.data[k * rgba.length + i + 3] = 255;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tthis.colorctx.putImageData(colorData, 0, 0);\n\n\t\t\t\t// 枠線\n\t\t\t\tthis.colorctx.strokeStyle = color;\n\t\t\t\t// 左\n\t\t\t\tthis.colorctx.beginPath();\n\t\t\t\tthis.colorctx.moveTo(0, 0);\n\t\t\t\tthis.colorctx.lineTo(0, 22);\n\t\t\t\tthis.colorctx.stroke();\n\t\t\t\t// 中央\n\t\t\t\tthis.colorctx.beginPath();\n\t\t\t\tthis.colorctx.moveTo(128, 0);\n\t\t\t\tthis.colorctx.lineTo(128, this.colorbarHeight);\n\t\t\t\tthis.colorctx.stroke();\n\t\t\t\t// 右\n\t\t\t\tthis.colorctx.beginPath();\n\t\t\t\tthis.colorctx.moveTo(255, 0);\n\t\t\t\tthis.colorctx.lineTo(255, 22);\n\t\t\t\tthis.colorctx.stroke();\n\t\t\t\t// 上\n\t\t\t\tthis.colorctx.beginPath();\n\t\t\t\tthis.colorctx.moveTo(0, 0);\n\t\t\t\tthis.colorctx.lineTo(255, 0);\n\t\t\t\tthis.colorctx.stroke();\n\t\t\t\t// 下\n\t\t\t\tthis.colorctx.beginPath();\n\t\t\t\tthis.colorctx.moveTo(0, this.colorbarHeight);\n\t\t\t\tthis.colorctx.lineTo(255, this.colorbarHeight);\n\t\t\t\tthis.colorctx.stroke();\n\n\t\t\t\tvar maxVal = this.state.colorbar.max === 0 ? \"0\" : this.state.colorbar.max.toFixed(5);\n\t\t\t\tvar minVal = this.state.colorbar.min === 0 ? \"0\" : this.state.colorbar.min.toFixed(5);\n\t\t\t\tvar middleVal = (this.state.colorbar.max + this.state.colorbar.min) / 2.0;\n\t\t\t\tmiddleVal = middleVal === 0 ? \"0\" : middleVal.toFixed(5);\n\t\t\t\tvar maxWidth = this.colorctx.measureText(maxVal).width;\n\n\t\t\t\tthis.colorctx.strokeStyle = color;\n\t\t\t\tthis.colorctx.fillStyle = color;\n\t\t\t\tthis.colorctx.fillText(minVal, 2, 25);\n\t\t\t\tthis.colorctx.fillText(middleVal, 120, 25);\n\t\t\t\tthis.colorctx.fillText(maxVal, 255 - maxWidth - 2, 25);\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'drawBBox',\n\t\tvalue: function drawBBox() {\n\t\t\tif (this.state.bbox) {\n\t\t\t\tvar canElem = document.getElementById(this.getCanvasName('canvas'));\n\t\t\t\tvar ctx = canElem.getContext(\"2d\");\n\t\t\t\tctx.strokeStyle = this.singleConv(this.getInputValue('bboxcolor'));\n\t\t\t\tctx.beginPath();\n\t\t\t\tfor (var i = 0; i < this.state.bbox.length; i += 2) {\n\t\t\t\t\tvar p0 = this.state.bbox[i + 0];\n\t\t\t\t\tvar p1 = this.state.bbox[i + 1];\n\t\t\t\t\tctx.moveTo(p0[0], p0[1]);\n\t\t\t\t\tctx.lineTo(p1[0], p1[1]);\n\t\t\t\t}\n\t\t\t\tctx.stroke();\n\t\t\t}\n\t\t}\n\t}, {\n\t\tkey: 'content',\n\t\tvalue: function content() {\n\t\t\tvar styles = this.styles();\n\t\t\treturn _react2['default'].createElement(\n\t\t\t\t'div',\n\t\t\t\t{ style: styles.bounds },\n\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ ref: 'canvas_wrap' },\n\t\t\t\t\t_react2['default'].createElement('canvas', { id: this.getCanvasName('canvas'), style: styles.canvas,\n\t\t\t\t\t\twidth: this.canvasSize.bind(this)()[0],\n\t\t\t\t\t\theight: this.canvasSize.bind(this)()[1] })\n\t\t\t\t),\n\t\t\t\t_react2['default'].createElement('img', { id: this.getCanvasName('img'), style: styles.image, src: '' }),\n\t\t\t\t_react2['default'].createElement('canvas', { ref: 'colorbar', style: styles.colorbar }),\n\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ style: styles.cameraButtonArea },\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ ref: 'reset', style: styles.cameraButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'Reset'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ ref: 'plusX', style: styles.cameraButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'+X'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ ref: 'minusX', style: styles.cameraButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'-X'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ ref: 'plusY', style: styles.cameraButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'+Y'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ ref: 'minusY', style: styles.cameraButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'-Y'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ ref: 'plusZ', style: styles.cameraButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'+Z'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ ref: 'minusZ', style: styles.cameraButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'-Z'\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ style: styles.presetArea },\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'span',\n\t\t\t\t\t\t{ style: { marginLeft: \"3px\", marginRight: \"3px\", fontSize: \"11px\" } },\n\t\t\t\t\t\t'Camera:'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'select',\n\t\t\t\t\t\t{ ref: 'presetSelect', style: styles.presetSelect, onChange: this.onPresetChange.bind(this) },\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'1'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'2'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'3'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'4'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'5'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'6'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'7'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'8'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'9'\n\t\t\t\t\t\t),\n\t\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t\t'option',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t'10'\n\t\t\t\t\t\t)\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'span',\n\t\t\t\t\t\t{ ref: 'registerButton', style: styles.registerButton,\n\t\t\t\t\t\t\tonClick: this.onClickCameraRegisterButton,\n\t\t\t\t\t\t\tonMouseEnter: this.onEnterCameraButton,\n\t\t\t\t\t\t\tonMouseLeave: this.onLeaveCameraButton },\n\t\t\t\t\t\t'Register'\n\t\t\t\t\t),\n\t\t\t\t\t_react2['default'].createElement(\n\t\t\t\t\t\t'span',\n\t\t\t\t\t\t{ style: { marginLeft: \"65px\", marginRight: \"3px\", fontSize: \"11px\" } },\n\t\t\t\t\t\t'BBox:',\n\t\t\t\t\t\t_react2['default'].createElement('input', { type: 'checkbox', checked: this.getInputValue('showbbox'), style: { verticalAlign: \"middle\" }, onChange: this.onBBoxShowChange.bind(this) }),\n\t\t\t\t\t\t_react2['default'].createElement('input', { type: 'color', ref: 'bboxcolor', value: this.singleConv(this.getInputValue('bboxcolor')), onChange: this.onColorChange, style: styles.colorInputs })\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}, {\n\t\tkey: 'getCanvasName',\n\t\tvalue: function getCanvasName(prefix) {\n\t\t\treturn prefix + '-' + this.varname;\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tvar styles = this.styles();\n\t\t\treturn this.content();\n\t\t}\n\t}]);\n\n\treturn RenderView;\n})(_react2['default'].Component);\n\nmodule.exports = RenderView;",
+      "varname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f",
+      "label": "",
+      "select": true,
+      "node": {
+        "close": false,
+        "pos": [
+          2612,
+          1735
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "visible": true,
+        "size": [
+          512,
+          562
+        ],
+        "pos": [
+          35,
+          24
+        ],
+        "zindex": 1
+      }
+    },
+    {
+      "name": "Color",
+      "funcname": "Color",
+      "info": "Colorをつくるノード",
+      "customfuncfile": "color.lua",
+      "uifile": "color.jsx",
+      "input": [
+        {
+          "name": "value",
+          "type": "vec4",
+          "value": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "nodeVarname": "Color0295e62f_3add_475f_932d_669edefaa722"
+        }
+      ],
+      "output": [
+        {
+          "name": "color",
+          "type": "vec4",
+          "nodeVarname": "Color0295e62f_3add_475f_932d_669edefaa722"
+        }
+      ],
+      "customfunc": "Color = {}\nsetmetatable(Color, {__index = HiveBaseModule})\n\nColor.new = function (varname)\n    local this = HiveBaseModule.new(varname)\n    this.property = {\n        value = {1,1,1,1}\n    }\n    setmetatable(this, {__index=Color})\n    return this\nend\n\nfunction Color:Do()\n    -- nothing to do\n    return true\nend\n\nfunction Color:color()\n    self:UpdateValue()\n    local v = self.value\n    local value = v.value\n    return value\nend\n",
+      "uiFunc": "'use strict';\n\nvar _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();\n\nvar _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactColor = require('react-color');\n\nvar _reactColor2 = _interopRequireDefault(_reactColor);\n\nfunction clampIntRGB(v) {\n\treturn Math.max(Math.min(v, 256.0), 0.0);\n}\n\nfunction clampFloatRGB(v) {\n\treturn Math.max(Math.min(v, 1.0), 0.0);\n}\n\nfunction toFloatRGB(v) {\n\treturn clampFloatRGB(Math.floor(v + 0.5) / 256.0);\n}\n\nfunction toIntRGB(v) {\n\treturn clampIntRGB(v * 256.0);\n}\n\nvar Color = (function (_React$Component) {\n\t_inherits(Color, _React$Component);\n\n\tfunction Color(props) {\n\t\t_classCallCheck(this, Color);\n\n\t\t_get(Object.getPrototypeOf(Color.prototype), 'constructor', this).call(this, props);\n\t\tthis.onColorChange = this.onColorChange.bind(this);\n\t}\n\n\t_createClass(Color, [{\n\t\tkey: 'onColorChange',\n\t\tvalue: function onColorChange(color) {\n\t\t\tthis.props.action.changeNodeInput({\n\t\t\t\tvarname: this.props.node.varname,\n\t\t\t\tinput: {\n\t\t\t\t\t\"value\": [toFloatRGB(color.rgb.r), toFloatRGB(color.rgb.g), toFloatRGB(color.rgb.b), clampFloatRGB(color.rgb.a)]\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\treturn _react2['default'].createElement(\n\t\t\t\t'div',\n\t\t\t\tnull,\n\t\t\t\t_react2['default'].createElement(_reactColor2['default'], {\n\t\t\t\t\tcolor: {\n\t\t\t\t\t\tr: toIntRGB(this.props.node.input[0].value[0]),\n\t\t\t\t\t\tg: toIntRGB(this.props.node.input[0].value[1]),\n\t\t\t\t\t\tb: toIntRGB(this.props.node.input[0].value[2]),\n\t\t\t\t\t\ta: clampFloatRGB(this.props.node.input[0].value[3])\n\t\t\t\t\t},\n\t\t\t\t\tonChange: this.onColorChange.bind(this),\n\t\t\t\t\ttype: 'sketch' })\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn Color;\n})(_react2['default'].Component);\n\nmodule.exports = Color;",
+      "varname": "Color0295e62f_3add_475f_932d_669edefaa722",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          2336,
+          1816
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "visible": true,
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          563,
+          23
+        ],
+        "zindex": 6
+      }
+    },
+    {
+      "name": "Slider",
+      "funcname": "Slider",
+      "info": "sliderをつくるノード",
+      "customfuncfile": "slider.lua",
+      "uifile": "slider.jsx",
+      "input": [
+        {
+          "name": "value",
+          "type": "float",
+          "value": 0.64,
+          "nodeVarname": "Slider56e1f332_66e6_49eb_ae83_e9682404dc85"
+        },
+        {
+          "name": "min",
+          "type": "float",
+          "value": 0,
+          "nodeVarname": "Slider56e1f332_66e6_49eb_ae83_e9682404dc85"
+        },
+        {
+          "name": "max",
+          "type": "float",
+          "value": 1,
+          "nodeVarname": "Slider56e1f332_66e6_49eb_ae83_e9682404dc85"
+        },
+        {
+          "name": "step",
+          "type": "float",
+          "value": 0.01,
+          "nodeVarname": "Slider56e1f332_66e6_49eb_ae83_e9682404dc85"
+        }
+      ],
+      "output": [
+        {
+          "name": "fval",
+          "type": "float",
+          "nodeVarname": "Slider56e1f332_66e6_49eb_ae83_e9682404dc85"
+        }
+      ],
+      "customfunc": "Slider = {}\nsetmetatable(Slider, {__index = HiveBaseModule})\n\nSlider.new = function (varname)\n    local this = HiveBaseModule.new(varname)\n    setmetatable(this, {__index=Slider})\n    return this\nend\n\nfunction Slider:Do()\n    -- nothing to do\n    self:UpdateValue()\n    return true\nend\n\nfunction Slider:fval()\n    local v = self.value\n    return v.value\nend\n",
+      "uiFunc": "\"use strict\";\n\nvar _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();\n\nvar _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if (\"value\" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { \"default\": obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactSlider = require(\"react-slider\");\n\nvar _reactSlider2 = _interopRequireDefault(_reactSlider);\n\nvar Slider = (function (_React$Component) {\n\t_inherits(Slider, _React$Component);\n\n\tfunction Slider(props) {\n\t\t_classCallCheck(this, Slider);\n\n\t\t_get(Object.getPrototypeOf(Slider.prototype), \"constructor\", this).call(this, props);\n\t\tthis.componentDidUpdate = this.componentDidUpdate.bind(this);\n\t}\n\n\t_createClass(Slider, [{\n\t\tkey: \"componentDidUpdate\",\n\t\tvalue: function componentDidUpdate() {\n\t\t\tthis.refs.slider._handleResize();\n\t\t}\n\t}, {\n\t\tkey: \"onChange\",\n\t\tvalue: function onChange(val) {\n\t\t\tthis.props.action.changeNodeInput({\n\t\t\t\tvarname: this.props.node.varname,\n\t\t\t\tinput: {\n\t\t\t\t\t\"value\": Number(val)\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: \"render\",\n\t\tvalue: function render() {\n\t\t\treturn _react2[\"default\"].createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: 'slider', style: { margin: '4', minWidth: \"250px\", height: '70', padding: '2' } },\n\t\t\t\t_react2[\"default\"].createElement(\n\t\t\t\t\t_reactSlider2[\"default\"],\n\t\t\t\t\t{\n\t\t\t\t\t\tref: \"slider\",\n\t\t\t\t\t\tvalue: [Number(this.props.node.input[0].value)],\n\t\t\t\t\t\tmin: Number(this.props.node.input[1].value),\n\t\t\t\t\t\tmax: Number(this.props.node.input[2].value),\n\t\t\t\t\t\tstep: Number(this.props.node.input[3].value),\n\t\t\t\t\t\tonChange: this.onChange.bind(this),\n\t\t\t\t\t\twithBars: true\n\t\t\t\t\t},\n\t\t\t\t\t_react2[\"default\"].createElement(\"div\", { className: \"thum\" })\n\t\t\t\t),\n\t\t\t\t_react2[\"default\"].createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ style: { marginTop: \"30px\", bottom: \"0px\", float: \"left\" } },\n\t\t\t\t\t\"min:\",\n\t\t\t\t\tthis.props.node.input[1].value\n\t\t\t\t),\n\t\t\t\t_react2[\"default\"].createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ style: { marginTop: \"30px\", bottom: \"0px\", float: \"right\" } },\n\t\t\t\t\t\"max:\",\n\t\t\t\t\tthis.props.node.input[2].value\n\t\t\t\t),\n\t\t\t\t_react2[\"default\"].createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ style: { marginTop: \"-18px\", textAlign: \"center\", width: \"100%\", height: \"30px\", float: \"left\" } },\n\t\t\t\t\t_react2[\"default\"].createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ style: {} },\n\t\t\t\t\t\t\"step:\",\n\t\t\t\t\t\tthis.props.node.input[3].value\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn Slider;\n})(_react2[\"default\"].Component);\n\nmodule.exports = Slider;",
+      "varname": "Slider56e1f332_66e6_49eb_ae83_e9682404dc85",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          1737,
+          1938
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "visible": true,
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          572,
+          503
+        ],
+        "zindex": 6
+      }
+    },
+    {
+      "name": "KVSXform",
+      "funcname": "KVSXform",
+      "info": "KVSXformを作るノード",
+      "customfuncfile": "xform.lua",
+      "input": [
+        {
+          "name": "rotation",
+          "type": "vec3",
+          "value": [
+            0,
+            0,
+            0
+          ],
+          "nodeVarname": "KVSXform92aaff03_e3f9_4547_9c60_2700e2e75dcc"
+        },
+        {
+          "name": "scaling",
+          "type": "vec3",
+          "value": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "nodeVarname": "KVSXform92aaff03_e3f9_4547_9c60_2700e2e75dcc"
+        },
+        {
+          "name": "translation",
+          "type": "vec3",
+          "value": [
+            0,
+            0,
+            0
+          ],
+          "nodeVarname": "KVSXform92aaff03_e3f9_4547_9c60_2700e2e75dcc"
+        }
+      ],
+      "output": [
+        {
+          "name": "xform",
+          "type": "Xform",
+          "nodeVarname": "KVSXform92aaff03_e3f9_4547_9c60_2700e2e75dcc"
+        }
+      ],
+      "customfunc": "KVSXform = {}\nsetmetatable(KVSXform, {__index = HiveBaseModule})\n\nlocal xform = require('KVSXform')\n\nKVSXform.new = function(varname)\n   local this = HiveBaseModule.new(varname)\n   this.xfo = xform()\n\n   setmetatable(this, {__index = KVSXform})\n   return this\nend\n\nfunction KVSXform:Do()\n   self:UpdateValue()\n   local v = self.value\n   self.xfo:SetRotation(v.rotation[1], v.rotation[2], v.rotation[3])\n   self.xfo:SetScaling(v.scaling[1], v.scaling[2], v.scaling[3])\n   self.xfo:SetTranslation(v.translation[1], v.translation[2], v.translation[3])\n   return true\nend\n\nfunction KVSXform:xform()\n   return self.xfo:Xform()\nend\n",
+      "uiFunc": "",
+      "varname": "KVSXform92aaff03_e3f9_4547_9c60_2700e2e75dcc",
+      "label": "",
+      "select": false,
+      "node": {
+        "close": false,
+        "pos": [
+          2051,
+          2080
+        ],
+        "zindex": 0
+      },
+      "panel": {
+        "size": [
+          100,
+          100
+        ],
+        "pos": [
+          350,
+          350
+        ],
+        "zindex": 9
+      }
+    }
+  ],
+  "plugs": [
+    {
+      "output": {
+        "nodeVarname": "KVSHydrogenVolumeData94ab0384_883c_4dbe_8bd7_ebe89800a3a5",
+        "name": "object"
+      },
+      "input": {
+        "nodeVarname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a",
+        "name": "object"
+      }
+    },
+    {
+      "output": {
+        "nodeVarname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a",
+        "name": "object"
+      },
+      "input": {
+        "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57",
+        "name": "object"
+      }
+    },
+    {
+      "output": {
+        "nodeVarname": "KVSStochasticPolygonRenderer92b23f7c_a0de_4e94_aaae_2004ca1b74df",
+        "name": "renderer"
+      },
+      "input": {
+        "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57",
+        "name": "renderer"
+      }
+    },
+    {
+      "output": {
+        "nodeVarname": "KVSfcb14ef4_c9e2_46fc_b8bf_083adaf2198a",
+        "name": "renderer"
+      },
+      "input": {
+        "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f",
+        "name": "renderer"
+      }
+    },
+    {
+      "output": {
+        "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57",
+        "name": "render_object"
+      },
+      "input": {
+        "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f",
+        "name": "RenderObject[0]"
+      }
+    },
+    {
+      "output": {
+        "nodeVarname": "Color0295e62f_3add_475f_932d_669edefaa722",
+        "name": "color"
+      },
+      "input": {
+        "nodeVarname": "RenderView06d1740d_25a9_4af9_b73c_313a258a0b2f",
+        "name": "clearcolor"
+      }
+    },
+    {
+      "output": {
+        "nodeVarname": "Slider56e1f332_66e6_49eb_ae83_e9682404dc85",
+        "name": "fval"
+      },
+      "input": {
+        "nodeVarname": "KVSIsosurface43cf39e3_62b8_494e_bfa7_ed597f738b3a",
+        "name": "isolevel"
+      }
+    },
+    {
+      "output": {
+        "nodeVarname": "KVSXform92aaff03_e3f9_4547_9c60_2700e2e75dcc",
+        "name": "xform"
+      },
+      "input": {
+        "nodeVarname": "KVSRenderObject2ab6190e_f442_4544_9b82_c356f5ee7f57",
+        "name": "xform"
+      }
+    }
+  ],
+  "input": [],
+  "output": [],
+  "nodePath": [],
+  "timeline": {
+    "frame": 0,
+    "data": {}
+  }
+}
