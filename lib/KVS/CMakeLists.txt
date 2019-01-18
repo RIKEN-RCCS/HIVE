@@ -3,7 +3,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 
 # HIVE
 set(HIVE_DIR ${CMAKE_SOURCE_DIR})
-set(KVS_DIR  ${CMAKE_SOURCE_DIR}/third_party/local/KVS)
+set(KVS_DIR  ${CMAKE_SOURCE_DIR}/third_party/local/kvs)
 
 # Headers
 set(INCLUDES
