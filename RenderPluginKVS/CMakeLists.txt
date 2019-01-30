@@ -70,8 +70,6 @@ set(INCLUDES
   ${CMAKE_SOURCE_DIR}/include
   ${CMAKE_BINARY_DIR}/third_party/lua/
 	${CMAKE_SOURCE_DIR}/third_party/lua/src
-  ${CMAKE_SOURCE_DIR}/third_party/local/kvs/include
-  ${CMAKE_SOURCE_DIR}/third_party/KVS/Source/
 	${CMAKE_SOURCE_DIR}/include/Buffer
 	${CMAKE_SOURCE_DIR}/include/Network
 	${CMAKE_SOURCE_DIR}/include/RenderObject
@@ -88,7 +86,6 @@ INCLUDE_DIRECTORIES(${INCLUDES})
 # Links
 set(LIBS
   ${CMAKE_BINARY_DIR}/third_party/lua
-  ${CMAKE_SOURCE_DIR}/third_party/local/kvs/lib
 )
 link_directories(${LIBS})
 

@@ -36,12 +36,13 @@ execute_process(
   OUTPUT_VARIABLE KVS_OSMESA_FLAG
   )
 
+set(KVS_OSMESA_FLAG 0)
 if(APPLE OR ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   if(${KVS_OSMESA_FLAG} EQUAL 0)
     find_library(OPENGL OpenGL)
     find_library(GLUT GLUT)
     find_library(GLEW glew)
-    
+
     if(NOT OPENGL)
       message(FATAL_ERROR "OpenGL Framework not found")
     endif()

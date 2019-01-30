@@ -9,6 +9,20 @@ set(SOURCES
   LuaEntry.cpp
   )
 
+
+# GLEW
+find_package(GLEW REQUIRED)
+if (GLEW_FOUND)
+    include_directories(${GLEW_INCLUDE_DIRS})
+    link_libraries(${GLEW_LIBRARY})
+endif()
+
+find_package(GLUT REQUIRED)
+if (GLUT_FOUND)
+    include_directories(${GLUT_INCLUDE_DIRS})
+    link_libraries(${GLUT_LIBRARY})
+endif()
+
 # Build as shared library
 add_library(${MODULE} SHARED ${SOURCES})
 set_target_properties(${MODULE} PROPERTIES PREFIX "")

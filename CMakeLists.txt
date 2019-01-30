@@ -91,10 +91,10 @@ add_subdirectory(third_party/lua)
 
 
 # KVS
-#IF (HIVE_BUILD_WITH_KVS)
-  # option(KVS_TOOL "KVS_TOOL" OFF)   # FORCE Disable KVS_TOOL
-  # add_subdirectory(third_party/KVS)
-#ENDIF()
+IF (HIVE_BUILD_WITH_KVS)
+  option(KVS_TOOL "KVS_TOOL" OFF)   # FORCE Disable KVS_TOOL
+  add_subdirectory(third_party/KVS)
+ENDIF()
 
 # standalone tools
 add_subdirectory(tools)
