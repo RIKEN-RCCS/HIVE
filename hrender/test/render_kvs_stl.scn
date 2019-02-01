@@ -1,0 +1,35 @@
+
+print('Render camera')
+
+local camera = Camera()
+camera:ClearColor(0,0,0,1)
+camera:SetScreenSize(512, 512)
+camera:SetFilename('image_kvs_stl.jpg')
+
+camera:LookAt(
+	5,5,5,
+	0,0,0,
+	0,1,0,
+	45
+)
+
+local kvsdataimp = require('KVSDataImporter')()
+kvsdataimp:SetFile('bunny.stl')
+local polygondata = kvsdataimp:Object()
+
+local kvsPolygonRenderer = require('KVSStochasticPolygonRenderer')()
+local renderer = kvsPolygonRenderer:Renderer()
+
+local kobj = require('KVSObject')()
+kobj:SetObject(polygondata)
+kobj:SetRenderer(renderer)
+kobj:SetShowFlag(true)
+
+local core = LoadModule("RenderPluginKVS")
+
+local robj = {
+   object = kobj:Object(),
+   renderer = kobj:Renderer()
+}
+core:render {robj, camera}
+

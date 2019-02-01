@@ -1,0 +1,12 @@
+{
+    "name": "KVSWriteFld",
+    "funcname": "KVSWriteFld",
+    "info": "データファイルをインポートするためのノード",
+    "customfuncfile": "fld.lua",
+    "input": [
+    	{"name": "object", "type": "Object"},
+	{"name": "filepath", "type": "string", "value": "", "meta": "filebrowser"}
+    ],
+    "output": [
+    ]
+}

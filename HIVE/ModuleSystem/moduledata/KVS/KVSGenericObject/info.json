@@ -1,0 +1,19 @@
+{
+    "name": "KVSGenericObject",
+    "funcname": "KVSGenericObject",
+    "info":"KVSGenericObjectを作るノード",
+    "customfuncfile":"object.lua",
+    "input": [
+	{ "name": "object",    "type": "Object" },
+        { "name": "translate", "type": "vec3", "value": [0,0,0] },
+        { "name": "rotate",    "type": "vec3", "value": [0,0,0] },
+        { "name": "scale",     "type": "vec3", "value": [1,1,1] },
+        { "name": "color",     "type": "vec4", "value": [-1,-1,-1,-1] },
+	{ "name": "show",      "type": "bool", "value": true, "hole": false },
+	{ "name": "shading",   "type": "bool", "value": true, "hole": false },
+	{ "name": "gpu",       "type": "bool", "value": true, "hole": false }
+    ],
+    "output": [
+        {"name": "render_object",  "type": "RenderObject"}
+    ]
+}

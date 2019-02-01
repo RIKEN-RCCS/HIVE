@@ -13,6 +13,6 @@
 	{"name": "show",      "type": "bool", "value": true}
     ],
     "output": [
-        {"name": "KVSRenderObj",  "type": "KVSRenderObject"}
+        {"name": "render_object",  "type": "RenderObject"}
     ]
 }

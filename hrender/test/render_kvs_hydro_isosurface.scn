@@ -1,0 +1,46 @@
+function sleep(n)
+  os.execute("sleep " .. tonumber(n))
+end
+
+print('Render camera')
+
+local camera = Camera()
+camera:ClearColor(0,0,0,1)
+camera:SetScreenSize(512, 512)
+camera:SetFilename('image_kvs_hydro_isosurface.jpg')
+
+camera:LookAt(
+	5,5,5,
+	0,0,0,
+	0,1,0,
+	45
+)
+
+local kvsdata = require('KVSHydrogenVolumeData')()
+kvsdata:SetResolution(32,32,32)
+local volumedata = kvsdata:Object()
+
+local kvsIsosurf  = require('KVSIsosurface')()
+kvsIsosurf:SetIsolevel(64)
+kvsIsosurf:SetVolumeObject(volumedata)
+local polygondata = kvsIsosurf:Object()
+
+local kvsPolygonRenderer = require('KVSStochasticPolygonRenderer')()
+local renderer = kvsPolygonRenderer:Renderer()
+
+local krobj = require('KVSRenderObject')()
+krobj:SetObject(polygondata)
+krobj:SetRenderer(renderer)
+krobj:SetShaderFlag(true)
+krobj:SetShadingFlag(true)
+krobj:SetShowFlag(true)
+
+print('\n')
+local core = LoadModule("RenderPluginKVS")
+
+local robj = {
+   object = krobj:Object(),
+   renderer = krobj:Renderer()
+}
+core:render {robj, camera}
+

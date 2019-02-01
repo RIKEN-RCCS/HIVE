@@ -1,0 +1,13 @@
+{
+    "name": "KVSParticleBasedRenderer",
+    "funcname": "KVSParticleBasedRenderer",
+    "info":"ParticleBasedRendererを生成するのノード",
+    "customfuncfile":"renderer.lua",
+    "input": [
+        {"name": "subpixel_level", "type": "integer", "value": 1 },
+        {"name": "enable_shading", "type": "bool", "value": true }
+    ],
+    "output": [
+        {"name": "renderer",  "type": "Renderer"}
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "KVSGLSLParticleBasedRenderer",
+    "funcname": "KVSGLSLParticleBasedRenderer",
+    "info":"GLSLParticleBasedRendererを生成するのノード",
+    "customfuncfile":"renderer.lua",
+    "input": [
+	{"name": "enable_lod", "type": "bool", "value": true },
+	{"name": "repetition_level", "type": "float", "value": 4 },
+	{"name": "enable_shading", "type": "bool", "value": true }
+    ],
+    "output": [
+        {"name": "renderer",  "type": "Renderer"}
+    ]
+}

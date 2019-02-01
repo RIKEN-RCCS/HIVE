@@ -1,0 +1,17 @@
+{
+    "name": "KVSCellByCellUniformSampling",
+    "funcname": "KVSCellByCellUniformSampling",
+    "info":"CellByCellUniformSamplingを作成するためのノード",
+    "customfuncfile":"sampling.lua",
+    "input": [
+	{"name": "volume_object",  "type": "Object" },
+	{"name": "transfer_function", "type": "TransferFunction" },
+	{"name": "repetition_level", "type": "float", "value": 1 },
+	{"name": "sampling_step",  "type": "float", "value": 0.5 },
+	{"name": "min_value",  "type": "float", "value": 0 },
+	{"name": "max_value",  "type": "float", "value": 0 }
+    ],
+    "output": [
+        {"name": "object",  "type": "Object"}
+    ]
+}

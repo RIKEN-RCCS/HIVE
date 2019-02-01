@@ -1,0 +1,12 @@
+{
+	"name": "KVSHAVSVolumeRenderer",
+	"funcname": "KVSHAVSVolumeRenderer",
+	"info":"HAVSVolumeRendererを生成するのノード",
+	"customfuncfile":"renderer.lua",
+        "input": [
+        {"name": "k_buff_size", "type": "int", "value": 2}
+	],
+	"output": [
+        {"name": "renderer",  "type": "Renderer"}
+	]
+}

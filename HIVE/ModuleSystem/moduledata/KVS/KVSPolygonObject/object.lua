@@ -2,11 +2,11 @@
 KVSPolygonObject = {}
 setmetatable(KVSPolygonObject, {__index = HiveBaseModule})
 
-local kvspolygonobject = require('KVSPolygonObject')
+local render_object = require('KVSPolygonObject')
 
 KVSPolygonObject.new = function (varname)
    local this = HiveBaseModule.new(varname)
-   this.obj = kvspolygonobject()
+   this.obj = render_object()
 
    setmetatable(this, {__index=KVSPolygonObject})
    return this
@@ -25,7 +25,7 @@ function KVSPolygonObject:Do()
    return true
 end
 
-function KVSPolygonObject:KVSRenderObj()
+function KVSPolygonObject:render_object()
    local v = self.value
    self.obj:Release()
    return {
