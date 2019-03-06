@@ -61,7 +61,7 @@ endif()
 # --------------------------------------
 # KVS
 
-#add_definitions(-DKVS_ENABLE_OPENGL=1)
+add_definitions(-DKVS_ENABLE_OPENGL=1)
 
 # --------------------------------------
 
