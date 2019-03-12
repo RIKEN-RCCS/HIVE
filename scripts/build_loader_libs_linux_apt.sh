@@ -60,7 +60,7 @@ function build_tp {
 	rm -rf TextParser_build
 	mkdir -p TextParser_build
 	cd TextParser_build
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/TextParser -Dwith_MPI=yes -Denable_test=no -Denable_fapi=no ../TextParser && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/TextParser -Dwith_MPI=yes -Denable_test=no -Denable_fapi=no ../TextParser && make && make install
 
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
@@ -78,7 +78,7 @@ function build_cdmlib {
 	mkdir -p CDMlib_build
 	cd CDMlib_build
 
-	CXX=${cxx_compiler} CC=${c_compiler} FC=${fc_compiler} F90=${fc_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/CDMlib -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dwith_NetCDF=${netcdf_dir} -Dwith_util=no -Dwith_example=no ../CDMlib && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} FC=${fc_compiler} F90=${fc_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/CDMlib -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dwith_NetCDF=${netcdf_dir} -Dwith_util=no -Dwith_example=no ../CDMlib && make && make install
 
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
@@ -94,7 +94,7 @@ function build_polylib {
 	mkdir -p Polylib_build
 	cd Polylib_build
 
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/Polylib -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dreal_type=float -Dwith_example=no ../Polylib && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/Polylib -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dreal_type=float -Dwith_example=no ../Polylib && make && make install
 
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
@@ -110,7 +110,7 @@ function build_bcmtools {
 	mkdir -p BCMTools_build
 	cd BCMTools_build
 
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/BCMTools -Denable_OPENMP=no -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dwith_PL=${installdir}/Polylib ../BCMTools && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/BCMTools -Denable_OPENMP=no -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dwith_PL=${installdir}/Polylib ../BCMTools && make && make install
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
 }
@@ -125,7 +125,7 @@ function build_hdmlib {
 	mkdir -p HDMlib_build
 	cd HDMlib_build
 
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/HDMlib -Denable_OPENMP=no -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dwith_PL=${installdir}/Polylib -Dwith_BCM=${installdir}/BCMTools -Dreal_type=float ../HDMlib && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/HDMlib -Denable_OPENMP=no -Dwith_MPI=yes -Dwith_TP=${installdir}/TextParser -Dwith_PL=${installdir}/Polylib -Dwith_BCM=${installdir}/BCMTools -Dreal_type=float ../HDMlib && make && make install
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
 }
@@ -137,7 +137,7 @@ function build_pdmlib {
 	tar -zxvf fpzip-1.0.1.tar.gz
 	cd fpzip-1.0.1/src
 	# TODO: Provide our own Makefile
-	CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} make
+	CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" make
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ..
 	mkdir -p ${installdir}/include
@@ -166,7 +166,7 @@ function build_pdmlib {
 	
 	mkdir -p Zoltan_build
 	cd Zoltan_build
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} ${ZOLTAN_CONFIGURE_PATH} --prefix=${installdir} && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${ZOLTAN_CONFIGURE_PATH} --prefix=${installdir} && make && make install
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
 
@@ -177,7 +177,7 @@ function build_pdmlib {
 	rm -rf PDMlib_build
 	mkdir -p PDMlib_build
 	cd PDMlib_build/
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags}  ${CMAKE_BIN} -Dwith_TP=${installdir}/TextParser -Dwith_FPZIP=${installdir} -Dwith_ZOLTAN=${installdir} -DINSTALL_DIR=${installdir}/PDMlib -Dbuild_h5part_converter=no -Dbuild_fv_converter=no -Dbuild_vtk_converter=no ../PDMlib && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC"  ${CMAKE_BIN} -Dwith_TP=${installdir}/TextParser -Dwith_FPZIP=${installdir} -Dwith_ZOLTAN=${installdir} -DINSTALL_DIR=${installdir}/PDMlib -Dbuild_h5part_converter=no -Dbuild_fv_converter=no -Dbuild_vtk_converter=no ../PDMlib && make && make install
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
 }
@@ -193,21 +193,25 @@ function build_udmlib {
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
 
-	cd third_party/
-	rm -rf Zoltan_v3.81/
-	rm -rf Zoltan_build/
-	tar -zxvf zoltan_distrib_v3.81.tar.gz
+
+	#
+	# !! NOT BUILD zoltan here. because already build when pdmlib
+	#
+	#cd third_party/
+	#rm -rf Zoltan_v3.81/
+	#rm -rf Zoltan_build/
+	#tar -zxvf zoltan_distrib_v3.81.tar.gz
 
         # Apply a patch for perl script(e.g. Newer Perl 5.22 on Ubuntu 16.04 fails to exec without this patch)
-        cd Zoltan_v3.81
-        patch -p0 < ../zoltan_installscript_patch.diff
-        cd ..
+        #cd Zoltan_v3.81
+        #patch -p0 < ../zoltan_installscript_patch.diff
+        #cd ..
 
-	mkdir -p Zoltan_build
-	cd Zoltan_build
-	CXX=${cxx_compiler} CC=${c_compiler} ../Zoltan_v3.81/configure --prefix=${installdir} && make && make install
-	if [[ $? != 0 ]]; then exit $?; fi
-	cd ${topdir}
+	#mkdir -p Zoltan_build
+	#cd Zoltan_build
+	#CXX=${cxx_compiler} CC=${c_compiler} ../Zoltan_v3.81/configure --prefix=${installdir} && make && make install
+	#if [[ $? != 0 ]]; then exit $?; fi
+	#cd ${topdir}
 
 	#
 	# UDMlib
@@ -221,7 +225,7 @@ function build_udmlib {
 
 	# Work around: Use cxx compiler even for CC to compile example programs.
 	#CXX=${cxx_compiler} CC=${cxx_compiler} ../configure --prefix=${installdir}/UDMlib --with-tp=${installdir}/TextParser --with-zoltan=${installdir} --with-cgns=${installdir} && make && make install
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags}  ${CMAKE_BIN} -Dwith_TP=${installdir}/TextParser -Dwith_ZOLTAN=${installdir} -Dwith_CGNS=${installdir} -Dwith_MPI=yes -Dreal_type=float -Dwith_util=no -Dwith_example=no -Dwith_HDF5=${installdir} -DINSTALL_DIR=${installdir}/UDMlib .. && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC"  ${CMAKE_BIN} -Dwith_TP=${installdir}/TextParser -Dwith_ZOLTAN=${installdir} -Dwith_CGNS=${installdir} -Dwith_MPI=yes -Dreal_type=float -Dwith_util=no -Dwith_example=no -Dwith_HDF5=${installdir} -DINSTALL_DIR=${installdir}/UDMlib .. && make && make install
 	
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
@@ -231,12 +235,12 @@ function build_compositor {
 
 	cd third_party/ 
 	cd 234Compositor_AVR/
-	autoreconf -ivf
 	#if [ -f "Makefile" ]; then
-	#	make distclean
+	#	make clean
 	#fi
-
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fopenmp" CXXFLAGS="${cxx_flags} -fopenmp" ./configure --prefix=${installdir}/234Compositor && make && make install
+	autoreconf -ivf
+	
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC -fopenmp" CXXFLAGS="${cxx_flags} -fPIC -fopenmp" ./configure --prefix=${installdir}/234Compositor && make && make install
 	cd ${topdir}
 }
 
@@ -246,7 +250,7 @@ function build_pmlib {
 
         autoreconf -ivf
         cd BUILD_DIR
-        CXX=${cxx_compiler} CC=${c_compiler} CXXFLAGS="${cxx_flags} -O3 -fopenmp" CFLAGS="${c_flags} -O3 -fopenmp" ../configure --prefix=${installdir}/PMlib && make && make install
+        CXX=${cxx_compiler} CC=${c_compiler} CXXFLAGS="${cxx_flags} -fPIC -O3 -fopenmp" CFLAGS="${c_flags} -fPIC -O3 -fopenmp" ../configure --prefix=${installdir}/PMlib && make && make install
         if [[ $? != 0 ]]; then exit $?; fi
         cd ${topdir}
 }
@@ -272,7 +276,7 @@ function build_cpmlib {
 	mkdir -p CPMlib_build
 	cd CPMlib_build
 
-	CXX=${cxx_compiler} CC=${c_compiler} FC=${fc_compiler} F90=${fc_compiler} CFLAGS=${c_flags} CXXFLAGS=${cxx_flags} ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/CPMlib -Dwith_MPI=yes -Dwith_example=no -Dwith_TP=${installdir}/TextParser -Dreal_type=float -Denable_LMR=no ../CPMlib && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} FC=${fc_compiler} F90=${fc_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${CMAKE_BIN} -DINSTALL_DIR=${installdir}/CPMlib -Dwith_MPI=yes -Dwith_example=no -Dwith_TP=${installdir}/TextParser -Dreal_type=float -Denable_LMR=no ../CPMlib && make && make install
 
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
