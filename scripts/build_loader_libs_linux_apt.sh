@@ -236,7 +236,7 @@ function build_compositor {
 	#	make distclean
 	#fi
 
-	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fopenmp" CXXFLAGS="${cxx_flags} -fopenmp" ./configure --prefix=${installdir}/234Compositor_AVR && make && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fopenmp" CXXFLAGS="${cxx_flags} -fopenmp" ./configure --prefix=${installdir}/234Compositor && make && make install
 	cd ${topdir}
 }
 
