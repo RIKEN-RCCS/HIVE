@@ -296,3 +296,5 @@ build_udmlib
 build_pmlib
 build_compositor
 build_nanomsg
+
+echo "build complete."
