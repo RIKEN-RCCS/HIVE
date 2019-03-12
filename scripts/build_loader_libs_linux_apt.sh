@@ -186,6 +186,7 @@ function build_udmlib {
 	cd third_party/
 	rm -rf CGNS
 	git clone https://github.com/CGNS/CGNS.git
+	rm -rf cgnslib_build
 	mkdir -p cgnslib_build
 	cd cgnslib_build
 	# Create .a only(disable .dylib build)
