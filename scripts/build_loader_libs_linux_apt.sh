@@ -12,11 +12,14 @@
 topdir=`pwd`
 installdir=`pwd`/third_party/local
 
-# Path to apt-get/homebew intalled NetCDF dir
-# linux
+if [ "$(uname)" == 'Darwin' ]; then # macOS
+echo "platform is macOS"
+# Path to homebrew intalled NetCDF dir
+netcdf_dir=/usr/local/Cellar/netcdf/4.5.0
+else # linux
+# Path to apt-get intalled NetCDF dir
 netcdf_dir=/usr
-# macOS
-#netcdf_dir=/usr/local/Cellar/netcdf/4.5.0
+fi
 
 
 if [ -z "${CMAKE_BIN+x}" ]; then
