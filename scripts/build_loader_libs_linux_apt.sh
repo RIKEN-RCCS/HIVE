@@ -189,7 +189,7 @@ function build_udmlib {
 	mkdir -p cgnslib_build
 	cd cgnslib_build
 	# Create .a only(disable .dylib build)
-	CXX=${cxx_compiler} CC=${c_compiler} ${CMAKE_BIN} -DCMAKE_INSTALL_PREFIX=${installdir} -DCGNS_ENABLE_64BIT=On -DCGNS_BUILD_SHARED=Off ../CGNS && make VERBOSE=1 && make install
+	CXX=${cxx_compiler} CC=${c_compiler} CFLAGS="${c_flags} -fPIC" CXXFLAGS="${cxx_flags} -fPIC" ${CMAKE_BIN} -DCMAKE_INSTALL_PREFIX=${installdir} -DCGNS_ENABLE_64BIT=On -DCGNS_BUILD_SHARED=Off ../CGNS && make VERBOSE=1 && make install
 	if [[ $? != 0 ]]; then exit $?; fi
 	cd ${topdir}
 
