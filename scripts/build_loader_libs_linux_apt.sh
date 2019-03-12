@@ -12,8 +12,12 @@
 topdir=`pwd`
 installdir=`pwd`/third_party/local
 
-# Path to homebew intalled NetCDF dir
+# Path to apt-get/homebew intalled NetCDF dir
+# linux
 netcdf_dir=/usr
+# macOS
+#netcdf_dir=/usr/local/Cellar/netcdf/4.5.0
+
 
 if [ -z "${CMAKE_BIN+x}" ]; then
   CMAKE_BIN=cmake

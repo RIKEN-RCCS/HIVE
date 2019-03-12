@@ -40,7 +40,7 @@ void mandelbulb(const float px, const float py, const float pz,
         r = sqrt(z[0] * z[0] + z[1] * z[1] + z[2] * z[2]);
         minDist = std::min(minDist, r);
         maxDist = std::max(maxDist, r);
-        if( r > 2. ) {
+        if( r > 2.f ) {
             minDist = 0;
             maxDist = 0;
             iterationCount = 0;
@@ -69,7 +69,7 @@ float* calcMandelbulb(const int w, const int h, const int d,
     float step[3] = {(bmax[0] - bmin[0]) / w,
                      (bmax[1] - bmin[1]) / h,
                      (bmax[2] - bmin[2]) / d};
-    float offset[3] = {step[0] / 2., step[1] / 2., step[2] / 2.};
+    float offset[3] = {step[0] / 2.f, step[1] / 2.f, step[2] / 2.f};
 
     for (int vz = 0 ; vz < d ; vz++) {
         float z = step[2] * vz + bmin[2] + offset[2] + originX;

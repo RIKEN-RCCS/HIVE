@@ -88,8 +88,8 @@ bool PointToVolume::ToVolume(int w, int h, int d)
 
 	// @todo { Consider particle radius. }
 
-	size_t dim[3] = {w, h, d};
-	for (size_t i = 0; i < m_point->Position()->GetNum(); i++)
+	size_t dim[3] = { static_cast<size_t>(w), static_cast<size_t>(h), static_cast<size_t>(d) };
+    for (size_t i = 0; i < m_point->Position()->GetNum(); i++)
 	{
 		size_t loc = findLoc(position[3 * i + 0], position[3 * i + 1],
 							 position[3 * i + 2], bmin, bmax, dim);
@@ -185,8 +185,8 @@ bool PointToVolume::ToVolumeWithAttrib(int w, int h, int d,
 
 	// @todo { Consider particle radius? }
 
-	size_t dim[3] = {w, h, d};
-	for (size_t i = 0; i < m_point->Position()->GetNum(); i++)
+	size_t dim[3] = { static_cast<size_t>(w), static_cast<size_t>(h), static_cast<size_t>(d) };
+    for (size_t i = 0; i < m_point->Position()->GetNum(); i++)
 	{
 		size_t loc = findLoc(position[3 * i + 0], position[3 * i + 1],
 							 position[3 * i + 2], bmin, bmax, dim);

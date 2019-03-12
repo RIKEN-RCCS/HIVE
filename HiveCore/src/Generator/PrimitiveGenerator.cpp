@@ -115,39 +115,39 @@ BufferMeshData *PrimitiveGenerator::Cube(float width, float height,
 	Vec2Buffer *texcoord = mesh->Texcoord();
 
 	const float vertices[][3] = {// +Z
-								 {-1.0 * width, -1.0 * height, 1.0 * depth},
-								 {1.0 * width, -1.0 * height, 1.0 * depth},
-								 {1.0 * width, 1.0 * height, 1.0 * depth},
-								 {-1.0 * width, 1.0 * height, 1.0 * depth},
+								 {-1.0f * width, -1.0f * height, 1.0f * depth},
+								 {1.0f * width, -1.0f * height, 1.0f * depth},
+								 {1.0f * width, 1.0f * height, 1.0f * depth},
+								 {-1.0f * width, 1.0f * height, 1.0f * depth},
 								 // -Z
-								 {-1.0 * width, -1.0 * height, -1.0 * depth},
-								 {-1.0 * width, 1.0 * height, -1.0 * depth},
-								 {1.0 * width, 1.0 * height, -1.0 * depth},
-								 {1.0 * width, -1.0 * height, -1.0 * depth},
+								 {-1.0f * width, -1.0f * height, -1.0f * depth},
+								 {-1.0f * width, 1.0f * height, -1.0f * depth},
+								 {1.0f * width, 1.0f * height, -1.0f * depth},
+								 {1.0f * width, -1.0f * height, -1.0f * depth},
 
 								 // +Y
-								 {-1.0 * width, 1.0 * height, -1.0 * depth},
-								 {-1.0 * width, 1.0 * height, 1.0 * depth},
-								 {1.0 * width, 1.0 * height, 1.0 * depth},
-								 {1.0 * width, 1.0 * height, -1.0 * depth},
+								 {-1.0f * width, 1.0f * height, -1.0f * depth},
+								 {-1.0f * width, 1.0f * height, 1.0f * depth},
+								 {1.0f * width, 1.0f * height, 1.0f * depth},
+								 {1.0f * width, 1.0f * height, -1.0f * depth},
 
 								 // -Y
-								 {-1.0 * width, -1.0 * height, -1.0 * depth},
-								 {1.0 * width, -1.0 * height, -1.0 * depth},
-								 {1.0 * width, -1.0 * height, 1.0 * depth},
-								 {-1.0 * width, -1.0 * height, 1.0 * depth},
+								 {-1.0f * width, -1.0f * height, -1.0f * depth},
+								 {1.0f * width, -1.0f * height, -1.0f * depth},
+								 {1.0f * width, -1.0f * height, 1.0f * depth},
+								 {-1.0f * width, -1.0f * height, 1.0f * depth},
 
 								 // +X
-								 {1.0 * width, -1.0 * height, -1.0 * depth},
-								 {1.0 * width, 1.0 * height, -1.0 * depth},
-								 {1.0 * width, 1.0 * height, 1.0 * depth},
-								 {1.0 * width, -1.0 * height, 1.0 * depth},
+								 {1.0f * width, -1.0f * height, -1.0f * depth},
+								 {1.0f * width, 1.0f * height, -1.0f * depth},
+								 {1.0f * width, 1.0f * height, 1.0f * depth},
+								 {1.0f * width, -1.0f * height, 1.0f * depth},
 
 								 // -X
-								 {-1.0 * width, -1.0 * height, -1.0 * depth},
-								 {-1.0 * width, -1.0 * height, 1.0 * depth},
-								 {-1.0 * width, 1.0 * height, 1.0 * depth},
-								 {-1.0 * width, 1.0 * height, -1.0 * depth}};
+								 {-1.0f * width, -1.0f * height, -1.0f * depth},
+								 {-1.0f * width, -1.0f * height, 1.0f * depth},
+								 {-1.0f * width, 1.0f * height, 1.0f * depth},
+								 {-1.0f * width, 1.0f * height, -1.0f * depth}};
 
 	const float normals[][3] = {// +Z
 								{0.0f, 0.0f, 1.0f},
@@ -180,17 +180,17 @@ BufferMeshData *PrimitiveGenerator::Cube(float width, float height,
 								{-1.0f, 0.0f, 0.0f},
 								{-1.0f, 0.0f, 0.0f}};
 
-	const float uvs[][2] = {{0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0}, {0.0, 1.0},
+	const float uvs[][2] = {{0.0, 0.0}, {1.0f, 0.0}, {1.0f, 1.0f}, {0.0, 1.0f},
 
-							{0.0, 0.0}, {0.0, 1.0}, {1.0, 1.0}, {1.0, 0.0},
+							{0.0, 0.0}, {0.0, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0},
 
-							{0.0, 1.0}, {0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0},
+							{0.0, 1.0f}, {0.0, 0.0}, {1.0f, 0.0}, {1.0f, 1.0f},
 
-							{0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0}, {0.0, 1.0},
+							{0.0, 0.0}, {1.0f, 0.0}, {1.0f, 1.0f}, {0.0, 1.0f},
 
-							{0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0}, {0.0, 1.0},
+							{0.0, 0.0}, {1.0f, 0.0}, {1.0f, 1.0f}, {0.0, 1.0f},
 
-							{0.0, 0.0}, {0.0, 1.0}, {1.0, 1.0}, {1.0, 0.0}};
+							{0.0, 0.0}, {0.0, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0}};
 
 	const int indices[] = {
 		0,  1,  2,  0,  2,  3,  // +Z

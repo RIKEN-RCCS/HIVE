@@ -141,7 +141,7 @@ bool MeshAttribToVolume::ToVolume(int w, int h, int d) {
     float *position = m_mesh->Position()->GetBuffer();
     float *attrib   = m_attrib->Float()->GetBuffer();
 
-    size_t dim[3] = { w, h, d };
+    size_t dim[3] = { static_cast<size_t>(w), static_cast<size_t>(h), static_cast<size_t>(d) };
     for (size_t i = 0; i < m_mesh->Position()->GetNum(); i++) {
         // Assume given point coordinate are all within the range of bounding box.
         size_t loc = findLoc(position[3*i+0], position[3*i+1], position[3*i+2], m_bmin, m_bmax, dim);

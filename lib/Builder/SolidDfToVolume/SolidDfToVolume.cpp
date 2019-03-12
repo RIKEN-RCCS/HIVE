@@ -497,7 +497,7 @@ bool SolidDfToVolume::ToVolume(int w, int h, int d) {
     
     float *position = m_solid->Position()->GetBuffer();
     
-    size_t dim[3] = { w, h, d };
+    size_t dim[3] = { static_cast<size_t>(w), static_cast<size_t>(h), static_cast<size_t>(d) };
     float scale[3] = { (m_bmax[0] - m_bmin[0])/w, (m_bmax[1] - m_bmin[1])/h, (m_bmax[2] - m_bmin[2])/d };
     
     const int solid_n = m_solid->Position()->GetNum()/m_solid->GetType();

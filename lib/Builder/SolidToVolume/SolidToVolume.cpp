@@ -93,7 +93,7 @@ bool SolidToVolume::ToVolume(int w, int h, int d) {
     
     // @todo { Consider particle radius. }
     
-    size_t dim[3] = { w, h, d };
+    size_t dim[3] = { static_cast<size_t>(w), static_cast<size_t>(h), static_cast<size_t>(d) };
     float scale[3] = { bmax[0]/w, bmax[1]/h, bmax[2]/d };
     
     int face_n = 0;

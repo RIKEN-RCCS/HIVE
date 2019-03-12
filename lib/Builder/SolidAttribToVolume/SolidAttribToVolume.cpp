@@ -377,7 +377,7 @@ bool SolidAttribToVolume::ToVolume(int w, int h, int d, int mode) {
     float *position = m_solid->Position()->GetBuffer();
     float *attrib   = m_attrib->Float()->GetBuffer();
     
-    size_t dim[3] = { w, h, d };
+    size_t dim[3] = { static_cast<size_t>(w), static_cast<size_t>(h), static_cast<size_t>(d) };
     
     for (int i = 0; i < m_solid->Index()->GetNum(); i++) {
         float *vertices_f =  position + 3 * m_solid->Type() * i;
